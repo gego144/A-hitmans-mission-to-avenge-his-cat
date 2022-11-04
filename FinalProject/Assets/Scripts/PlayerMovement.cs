@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed;
+    [SerializeField] private float speed;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float gravity;
+
     private Rigidbody2D rb2d;
+    [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform ceilingCheck;
+
+
+
+
+   
 
     void Start()
     {
@@ -14,9 +25,17 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        float moveHorizontal = Input.GetAxisRaw("Horizontal");
 
-        rb2d.velocity = new Vector2(moveHorizontal * speed, moveVertical * speed);
+        rb2d.velocity = new Vector2(moveHorizontal * speed, 0);
+
+        if (Input.GetButton("Jump")) {
+            rb2d.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+
+
+
     }
+
+
 }
