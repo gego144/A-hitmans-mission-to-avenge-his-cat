@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    //MovementVars
+
+
+    [Header("Move Variables")]
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float gravity;
@@ -13,15 +15,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float decc;
     [SerializeField] private float velPower;
 
-    //JumpingVars
-    private float jumpCoyoteTime = 0.5f;
-    private float jumpBufferTime = 0.5f;
-    private float lastGroundTime;
-    private float lastJumpTime;
+    [Header("Jump Variables")]
+    [SerializeField] private float jumpCoyoteTime = 0.5f;
+    [SerializeField] private float jumpBufferTime = 0.5f;
+    [SerializeField] private float lastGroundTime;
+    [SerializeField] private float lastJumpTime;
+    [SerializeField] private float jumpCutMultiplier = 0.5f;
+    [SerializeField] private float fallGravity;
+
     public bool isJumping;
+    public bool jumpInputIsReleased;
 
 
-    // groundCheckVars
+    [Header("Ground Variables")]
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private Transform groundCheck;
 
@@ -41,34 +47,47 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        if (isGrounded())
-        {
-
-            lastGroundTime = jumpCoyoteTime;
-        }
-
-
-        if ((isGrounded()  || lastGroundTime > 0) && Input.GetButtonDown("Jump")) {
-            Debug.Log(lastGroundTime);       
-            isJumping = true;
-            Jump();
-        }
-
-
-        move();
-
         lastJumpTime -= Time.deltaTime;
         lastGroundTime -= Time.deltaTime;
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            jumpDownInput();
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space)) {
+            OnJumpUp();
+        }
+
+
+
+        if (isGrounded() && !isJumping)
+        {
+            lastGroundTime = jumpCoyoteTime;
+        }
+
+        if (isJumping && rb2d.velocity.y < 0)
+        {
+            isJumping = false;
+            rb2d.gravityScale = gravity * fallGravity;
+
+        }
+        else {
+            rb2d.gravityScale = gravity;
+        }
+
+
+        Debug.Log(rb2d.gravityScale);
+
+        if (lastGroundTime > 0 && !isJumping && lastJumpTime > 0)
+        {
+            Jump();
+        }
+
+        move();
+
     }
 
-    private void FixedUpdate()
-    {
-        if (isJumping) {
-            isJumping = false;
-            lastGroundTime = 0;
-        }
-    }
 
 
 
@@ -90,17 +109,36 @@ public class PlayerMovement : MonoBehaviour
 
 
     private void Jump() {
-        Debug.Log("hello");
-        Debug.Log(isJumping);
+        lastJumpTime = 0;
+        lastGroundTime = 0;
+        jumpInputIsReleased = false;
+        isJumping = true;
         rb2d.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        lastJumpTime = jumpBufferTime;
     }
+
+
+    private void OnJumpUp() {
+
+        if (rb2d.velocity.y > 0 && isJumping) {
+            rb2d.AddForce(Vector2.down * rb2d.velocity.y * (1 - jumpCutMultiplier), ForceMode2D.Impulse); 
+        } 
+
+        jumpInputIsReleased = true;
+        lastJumpTime = 0;
+    }
+
+
+
 
     private bool isGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, whatIsGround);
     }
 
+    public void jumpDownInput()
+    {
+        lastJumpTime = jumpBufferTime;
+    }
 
 
 }
