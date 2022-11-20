@@ -77,7 +77,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        Debug.Log(rb2d.gravityScale);
 
         if (lastGroundTime > 0 && !isJumping && lastJumpTime > 0)
         {
