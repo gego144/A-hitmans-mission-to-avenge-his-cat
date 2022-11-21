@@ -139,5 +139,22 @@ public class PlayerMovement : MonoBehaviour
         lastJumpTime = jumpBufferTime;
     }
 
+    public void rageModeOn()
+    {
+        speed += 7f;
+        jumpForce += 15f;
+        gravity += 3f;
+        accel += 4f;
+        decc -= 2f;
+    }
+    public void rageModeOff()
+    {
+        speed -= 7f;
+        jumpForce -= 15f;
+        gravity -= 3f;
+        accel -= 4f;
+        decc += 2f;
+    }
+
 
 }

@@ -4,18 +4,31 @@ using UnityEngine;
 
 public class Gadgets : MonoBehaviour
 {
-    private string gadgetType;
+    public string gadgetType;
+    private float gadgetCooldown;
+
+    // Teleport parts
     public GameObject player;
     public ParticleSystem teleportParticles;
+
+    // Invisibility parts
     public Material invisibilityMaterial;
-    private float gadgetCooldown;
+    
+    //Rage parts
     private SpriteRenderer playerDisplay;
+    private Color playersColor;
+    private PlayerMovement movement;
+
     // Start is called before the first frame update
     void Start()
     {
-        gadgetType = "teleport";
         gadgetCooldown = 0f;
+
+        //Rage parts
         playerDisplay = gameObject.GetComponent<SpriteRenderer>();
+        playersColor = playerDisplay.color;
+        movement = gameObject.GetComponent<PlayerMovement>();
+
     }
     void Update()
     {
@@ -23,7 +36,7 @@ public class Gadgets : MonoBehaviour
         if (Input.GetButtonDown("Fire2") && gadgetCooldown < 0f)
         {
             switch (gadgetType) {
-                case "teleport":
+                case "Teleport":
                     gadgetCooldown = 5f;
                     RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
@@ -35,16 +48,19 @@ public class Gadgets : MonoBehaviour
                         player.transform.position = clickLocation;
                     }
                     break;
-                case "invisibility":
-                    gadgetCooldown = 20f;
+                case "Invisibility":
+                    gadgetCooldown = 10f;
                     Color color = invisibilityMaterial.color;
                     color.a = 0.5f;
                     invisibilityMaterial.color = color;
                     StartCoroutine(StartTimer(5f));
                     break;
-                case "rage":
-                    gadgetCooldown = 20f;
-
+                case "Rage":
+                    gadgetCooldown = 10f;
+                    Color customColor = new Color(0.4f, 0.9f, 0.7f, 1.0f);
+                    playerDisplay.color = customColor;
+                    movement.rageModeOn();
+                    StartCoroutine(StartTimer(5f));
                     break;
             }
         }
@@ -55,15 +71,16 @@ public class Gadgets : MonoBehaviour
     {
         switch (gadgetType)
         {
-            case "teleport":
-                break;
-            case "invisibility":
+            case "Invisibility":
                 Color color = invisibilityMaterial.color;
                 yield return new WaitForSeconds(length);
                 color.a = 1f;
                 invisibilityMaterial.color = color;
                 break;
-            case "rage":
+            case "Rage":
+                yield return new WaitForSeconds(length);
+                movement.rageModeOff();
+                playerDisplay.color = playersColor;
                 break;
         }
     }
