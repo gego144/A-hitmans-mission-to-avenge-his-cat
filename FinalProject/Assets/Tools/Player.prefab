@@ -155,6 +155,7 @@ MonoBehaviour:
   dashingPower: 0
   dashingTime: 0
   dashingCoolDown: 0
+  isFacingRight: 0
   tr: {fileID: 8596234427921454430}
 --- !u!61 &8596234427921454496
 BoxCollider2D:
@@ -400,7 +401,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8596234428517092687}
   serializedVersion: 8
-  lengthInSec: 0.45
+  lengthInSec: 0.6
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
