@@ -22,17 +22,27 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float lastJumpTime;
     [SerializeField] private float jumpCutMultiplier = 0.5f;
     [SerializeField] private float fallGravity;
-
     public bool isJumping;
     public bool jumpInputIsReleased;
-
 
     [Header("Ground Variables")]
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private Transform groundCheck;
 
 
+    [Header("Dashing Variables")]
+    public bool canDash = true;
+    public bool isDashing;
+    [SerializeField] private float dashingPower;
+    [SerializeField] private float dashingTime;
+    [SerializeField] private float dashingCoolDown;
+
+
+
+    [Header("Misc")]
+    private bool isFacingRight = true; 
     private Rigidbody2D rb2d;
+    [SerializeField] private TrailRenderer tr;
 
 
     void Start()
@@ -42,13 +52,16 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-
-
     void Update()
     {
 
         lastJumpTime -= Time.deltaTime;
         lastGroundTime -= Time.deltaTime;
+
+        if (isDashing) {
+            return;
+        }
+
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -83,6 +96,14 @@ public class PlayerMovement : MonoBehaviour
             Jump();
         }
 
+
+        if (Input.GetButtonDown("Fire3") && canDash) {
+            StartCoroutine(Dash());
+        }
+
+
+
+
         move();
 
     }
@@ -104,6 +125,14 @@ public class PlayerMovement : MonoBehaviour
 
         rb2d.AddForce(movement * Vector2.right);
 
+        if (moveHorizontal > 0 && !isFacingRight) {
+            Flip();
+        }
+
+        if (moveHorizontal < 0 && isFacingRight)
+        {
+            Flip();
+        }
     }
 
 
@@ -126,15 +155,12 @@ public class PlayerMovement : MonoBehaviour
         lastJumpTime = 0;
     }
 
-
-
-
     private bool isGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, whatIsGround);
     }
 
-    public void jumpDownInput()
+    private void jumpDownInput()
     {
         lastJumpTime = jumpBufferTime;
     }
@@ -155,6 +181,34 @@ public class PlayerMovement : MonoBehaviour
         accel -= 4f;
         decc += 2f;
     }
+
+
+    private void Flip() {
+        Vector3 currentScale = gameObject.transform.localScale;
+        currentScale.x *= -1;
+        gameObject.transform.localScale = currentScale;
+        isFacingRight = !isFacingRight;
+    }
+
+
+    IEnumerator Dash() {
+        canDash = false;
+        isDashing = true;
+        float originalGravity = rb2d.gravityScale;
+        rb2d.gravityScale = 0;
+        rb2d.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+        tr.emitting = true;
+        yield return new WaitForSeconds(dashingTime);
+        tr.emitting = false;
+        rb2d.gravityScale = originalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCoolDown);
+        canDash = true;
+    }
+
+
+
+
 
 
 }
