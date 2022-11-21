@@ -22,7 +22,7 @@ public class MeleeSwing : MonoBehaviour
                 Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(gameObject.transform.position, swingRange, enemyLayers);
                 foreach(Collider2D enemy in enemiesHit)
                 {
-                    Debug.Log("We hit " + enemy.name);
+                    Destroy(enemy.gameObject);
                 }
                 nextAttackTime = Time.time + swingRate;
             }

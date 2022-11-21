@@ -8,12 +8,13 @@ public class EnemyAI : MonoBehaviour
     public Vector3 Destination;
     private bool movingToDestination;
 
-    public GameObject Player;
+    private GameObject Player;
     private bool movingToPlayer;
-    // Start is called before the first frame update
+
     void Start()
     {
         StartLocation = gameObject.transform.position;
+        Player = GameObject.FindGameObjectWithTag("Player");
         movingToDestination = true;
         movingToPlayer = false;
     }
@@ -24,6 +25,10 @@ public class EnemyAI : MonoBehaviour
         if(Vector3.Distance(gameObject.transform.position, Player.transform.position) < 5f)
         {
             movingToPlayer = true;
+        }
+        else
+        {
+            movingToPlayer = false;
         }
 
         if (movingToPlayer)

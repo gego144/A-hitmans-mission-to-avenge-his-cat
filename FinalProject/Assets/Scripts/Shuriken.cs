@@ -40,14 +40,20 @@ public class Shuriken : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        Debug.Log(collision.gameObject.layer);
+
+        if (collision.gameObject.layer == 3)
+        {
+            Destroy(gameObject);
+        }
+        else if (collision.tag == "Player")
         {
 
         }
         else
         {
             Destroy(gameObject);
-            Destroy(collision.transform.gameObject);
+            //Destroy(collision.transform.gameObject);
         }
         //Destroy(collision.transform.gameObject);
     }
