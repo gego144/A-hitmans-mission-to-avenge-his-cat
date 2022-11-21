@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     [Header("Misc")]
-    private bool isFacingRight = true; 
+    [SerializeField] private bool isFacingRight;
     private Rigidbody2D rb2d;
     [SerializeField] private TrailRenderer tr;
 
@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        isFacingRight = true;
     }
 
 
@@ -206,7 +207,10 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
     }
 
-
+    public bool getFacingDirection()
+    {
+        return isFacingRight;
+    }
 
 
 

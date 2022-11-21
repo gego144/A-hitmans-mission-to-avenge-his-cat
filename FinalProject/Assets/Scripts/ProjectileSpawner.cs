@@ -26,7 +26,7 @@ public class ProjectileSpawner : MonoBehaviour
         {
             if (CanShoot())
             {
-                Instantiate(projectile, new Vector3(gameObject.transform.position.x + 1f, gameObject.transform.position.y + 0.2f, gameObject.transform.position.z), gameObject.transform.rotation);
+                Instantiate(projectile, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.2f, gameObject.transform.position.z), gameObject.transform.rotation);
                 timeSinceLastShot = Time.time + fireRate;
             }
         }

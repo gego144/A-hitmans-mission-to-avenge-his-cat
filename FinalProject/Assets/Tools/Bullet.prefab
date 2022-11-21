@@ -181,3 +181,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   rb: {fileID: 1129805541613608520}
+  leftSide: {x: -1, y: 0, z: 0}
