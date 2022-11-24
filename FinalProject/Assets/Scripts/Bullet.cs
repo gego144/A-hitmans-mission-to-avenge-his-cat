@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private PlayerMovement playerMovementObj;
     private Vector3 leftSide;
+    private float damage;
 
     void Start()
     {
@@ -43,15 +44,37 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        else if (collision.gameObject.layer == 6)
+        {
+            bool killedAI = false;
+            switch (collision.gameObject.tag)
+            {
+                case "RoamerEnemyAI":
+                    killedAI = collision.gameObject.GetComponent<RoamerEnemyAI>().AiHealthDamage(damage);
+                    break;
+                case "RocketShooterAI":
+                    killedAI = collision.gameObject.GetComponent<RocketShooterAI>().AiHealthDamage(damage);
+                    break;
+                case "DroneEnemyAI":
+                    killedAI = collision.gameObject.GetComponent<DroneEnemyAI>().AiHealthDamage(damage);
+                    break;
+            }
+            if (killedAI)
+            {
+                Destroy(collision.gameObject);
+            }
+        }
         else if (collision.tag == "Player")
         {
 
         }
         else
         {
-            Destroy(gameObject);
-            //Destroy(collision.transform.gameObject);
         }
 
+    }
+    public void setDamage(float damage)
+    {
+        this.damage = damage;
     }
 }

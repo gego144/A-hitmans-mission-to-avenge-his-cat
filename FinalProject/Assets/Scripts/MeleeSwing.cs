@@ -22,7 +22,26 @@ public class MeleeSwing : MonoBehaviour
                 Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(gameObject.transform.position, swingRange, enemyLayers);
                 foreach(Collider2D enemy in enemiesHit)
                 {
-                    Destroy(enemy.gameObject);
+                    if (enemy.gameObject.layer == 6)
+                    {
+                        bool killedAI = false;
+                        switch (enemy.gameObject.tag)
+                        {
+                            case "RoamerEnemyAI":
+                                killedAI = enemy.gameObject.GetComponent<RoamerEnemyAI>().AiHealthDamage(50f);
+                                break;
+                            case "RocketShooterAI":
+                                killedAI = enemy.gameObject.GetComponent<RocketShooterAI>().AiHealthDamage(50f);
+                                break;
+                            case "DroneEnemyAI":
+                                killedAI = enemy.gameObject.GetComponent<DroneEnemyAI>().AiHealthDamage(50f);
+                                break;
+                        }
+                        if (killedAI)
+                        {
+                            Destroy(enemy.gameObject);
+                        }
+                    }
                 }
                 nextAttackTime = Time.time + swingRate;
             }

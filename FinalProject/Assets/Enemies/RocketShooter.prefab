@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8946676088625041461}
   m_Layer: 6
   m_Name: RocketShooter
-  m_TagString: Untagged
+  m_TagString: RocketShooterAI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,8 @@ Transform:
   m_LocalPosition: {x: -9.24, y: -2.5194564, z: -0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 584618972872841317}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -148,6 +149,89 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Destination: {x: -8.38, y: -2.519456, z: -0.15}
-  Player: {fileID: 0}
   coolDownShotTimer: 2
   rocket: {fileID: 2740492198992249125, guid: 4bb4970fef144a946a11e8606eeaa407, type: 3}
+  isInvisible: {fileID: 0}
+  AiHealth: 0
+  bloodSplat: {fileID: 584618972872841322}
+--- !u!1001 &2622543043185931308
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 262533691021789424}
+    m_Modifications:
+    - target: {fileID: 3204837644149124164, guid: 8971ab4a888bcf24390dcabef8ce0dc4,
+        type: 3}
+      propertyPath: m_Name
+      value: Blood
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204837644149124169, guid: 8971ab4a888bcf24390dcabef8ce0dc4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204837644149124169, guid: 8971ab4a888bcf24390dcabef8ce0dc4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.010000229
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204837644149124169, guid: 8971ab4a888bcf24390dcabef8ce0dc4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.24000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204837644149124169, guid: 8971ab4a888bcf24390dcabef8ce0dc4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204837644149124169, guid: 8971ab4a888bcf24390dcabef8ce0dc4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204837644149124169, guid: 8971ab4a888bcf24390dcabef8ce0dc4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204837644149124169, guid: 8971ab4a888bcf24390dcabef8ce0dc4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204837644149124169, guid: 8971ab4a888bcf24390dcabef8ce0dc4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204837644149124169, guid: 8971ab4a888bcf24390dcabef8ce0dc4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204837644149124169, guid: 8971ab4a888bcf24390dcabef8ce0dc4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204837644149124169, guid: 8971ab4a888bcf24390dcabef8ce0dc4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8971ab4a888bcf24390dcabef8ce0dc4, type: 3}
+--- !u!4 &584618972872841317 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3204837644149124169, guid: 8971ab4a888bcf24390dcabef8ce0dc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2622543043185931308}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &584618972872841322 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3204837644149124166, guid: 8971ab4a888bcf24390dcabef8ce0dc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2622543043185931308}
+  m_PrefabAsset: {fileID: 0}
