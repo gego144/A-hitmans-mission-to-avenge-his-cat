@@ -100,4 +100,5 @@ MonoBehaviour:
   timeSinceLastShot: 0
   fireRate: 1
   maxDistance: 100
-  bullet: {fileID: 8987246316157032603, guid: d9a708faa8a668b478fb91e96d6353e6, type: 3}
+  projectile: {fileID: 8987246316157032603, guid: d9a708faa8a668b478fb91e96d6353e6,
+    type: 3}

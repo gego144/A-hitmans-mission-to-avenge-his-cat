@@ -46,6 +46,26 @@ public class Shuriken : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        else if (collision.gameObject.layer == 6)
+        {
+            bool killedAI = false;
+            switch (collision.gameObject.tag)
+            {
+                case "RoamerEnemyAI":
+                    killedAI = collision.gameObject.GetComponent<RoamerEnemyAI>().AiHealthDamage(50f);
+                    break;
+                case "RocketShooterAI":
+                    killedAI = collision.gameObject.GetComponent<RocketShooterAI>().AiHealthDamage(50f);
+                    break;
+                case "DroneEnemyAI":
+                    killedAI = collision.gameObject.GetComponent<DroneEnemyAI>().AiHealthDamage(50f);
+                    break;
+            }
+            if (killedAI)
+            {
+                Destroy(collision.gameObject);
+            }
+        }
         else if (collision.tag == "Player")
         {
 

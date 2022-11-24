@@ -9,6 +9,8 @@ public class ProjectileSpawner : MonoBehaviour
     public float fireRate;
     public float maxDistance;
     public GameObject projectile;
+    [SerializeField]
+    private float damage;
 
     private bool CanShoot()
     {
@@ -26,7 +28,11 @@ public class ProjectileSpawner : MonoBehaviour
         {
             if (CanShoot())
             {
-                Instantiate(projectile, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.2f, gameObject.transform.position.z), gameObject.transform.rotation);
+                GameObject spawnedProjectile = Instantiate(projectile, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.2f, gameObject.transform.position.z), gameObject.transform.rotation);
+                if (projectile.name != "Shuriken")
+                {
+                    spawnedProjectile.GetComponent<Bullet>().setDamage(damage);
+                }
                 timeSinceLastShot = Time.time + fireRate;
             }
         }

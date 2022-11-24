@@ -13,12 +13,19 @@ public class RocketShooterAI : MonoBehaviour
     [SerializeField]
     private GameObject rocket;
     private List<GameObject> rocketsCreated;
+    [SerializeField]
+    private GameObject isInvisible;
+    [SerializeField]
+    private float AiHealth;
+    [SerializeField]
+    private ParticleSystem bloodSplat;
 
     void Start()
     {
         StartLocation = gameObject.transform.position;
         movingToDestination = true;
         rocketsCreated = new List<GameObject>();
+        AiHealth = 70f;
     }
 
     // Update is called once per frame
@@ -28,10 +35,17 @@ public class RocketShooterAI : MonoBehaviour
 
         if (movingToDestination)
         {
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, Destination, 5f * Time.deltaTime);
-            if(Vector3.Distance(gameObject.transform.position, Destination) < 0.5f)
+            gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, Destination, 5f * Time.deltaTime);
+            if (Vector3.Distance(gameObject.transform.position, Destination) < 0.5f)
             {
                 movingToDestination = !movingToDestination;
+            }
+        }
+        else if (isInvisible.activeSelf)
+        {
+            foreach (GameObject flyingRocket in rocketsCreated)
+            {
+                Destroy(flyingRocket);
             }
         }
         else if(coolDownShotTimer < 0)
@@ -46,5 +60,11 @@ public class RocketShooterAI : MonoBehaviour
         {
             Destroy(flyingRocket);
         }
+    }
+    public bool AiHealthDamage(float damage)
+    {
+        bloodSplat.Play();
+        AiHealth -= damage;
+        return AiHealth <= 0;
     }
 }

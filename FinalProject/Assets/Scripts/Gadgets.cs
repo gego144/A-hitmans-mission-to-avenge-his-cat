@@ -1,23 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Gadgets : MonoBehaviour
 {
     public string gadgetType;
     private float gadgetCooldown;
+    [SerializeField]
+    private TextMeshProUGUI gadgetReady;
 
     // Teleport parts
     public GameObject player;
     public ParticleSystem teleportParticles;
 
     // Invisibility parts
-    public Material invisibilityMaterial;
+    [SerializeField]
+    private SpriteRenderer invisibilityMaterial;
+    [SerializeField]
+    private GameObject currentlyInvisible;
+    private Color lowerAlpha;
     
     //Rage parts
     private SpriteRenderer playerDisplay;
     private Color playersColor;
     private PlayerMovement movement;
+    [SerializeField]
+    private GameObject currentlyRaged;
 
     // Start is called before the first frame update
     void Start()
@@ -49,13 +58,15 @@ public class Gadgets : MonoBehaviour
                     }
                     break;
                 case "Invisibility":
+                    currentlyInvisible.SetActive(true);
                     gadgetCooldown = 10f;
-                    Color color = invisibilityMaterial.color;
-                    color.a = 0.5f;
-                    invisibilityMaterial.color = color;
+                    lowerAlpha = invisibilityMaterial.color;
+                    lowerAlpha.a = 0.5f;
+                    invisibilityMaterial.color = lowerAlpha;
                     StartCoroutine(StartTimer(5f));
                     break;
                 case "Rage":
+                    currentlyRaged.SetActive(true);
                     gadgetCooldown = 10f;
                     Color customColor = new Color(0.4f, 0.9f, 0.7f, 1.0f);
                     playerDisplay.color = customColor;
@@ -63,6 +74,14 @@ public class Gadgets : MonoBehaviour
                     StartCoroutine(StartTimer(5f));
                     break;
             }
+        }
+        if(gadgetCooldown < 0f)
+        {
+            gadgetReady.text = "Gadget: Ready";
+        }
+        else
+        {
+            gadgetReady.text = "Gadget: Not Ready";
         }
         gadgetCooldown -= Time.deltaTime;
     }
@@ -72,15 +91,17 @@ public class Gadgets : MonoBehaviour
         switch (gadgetType)
         {
             case "Invisibility":
-                Color color = invisibilityMaterial.color;
+                
                 yield return new WaitForSeconds(length);
-                color.a = 1f;
-                invisibilityMaterial.color = color;
+                lowerAlpha.a = 1f;
+                invisibilityMaterial.color = lowerAlpha;
+                currentlyInvisible.SetActive(false);
                 break;
             case "Rage":
                 yield return new WaitForSeconds(length);
                 movement.rageModeOff();
                 playerDisplay.color = playersColor;
+                currentlyRaged.SetActive(false);
                 break;
         }
     }
