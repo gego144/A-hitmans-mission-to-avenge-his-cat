@@ -10,6 +10,8 @@ public class PlayerHealth : MonoBehaviour
     private TextMeshProUGUI healthText;
     private float health;
     private bool justTookDamage;
+    [SerializeField]
+    private ParticleSystem blood;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         if (!justTookDamage) {
+            blood.Play();
             health -= damage;
             healthText.text = Convert.ToString(health);
             StartCoroutine(timeBetweenDamage());
