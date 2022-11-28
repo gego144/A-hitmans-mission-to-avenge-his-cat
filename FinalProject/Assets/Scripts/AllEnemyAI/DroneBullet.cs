@@ -25,13 +25,10 @@ public class DroneBullet : MonoBehaviour
         if(Vector3.Distance(gameObject.transform.position, PlayerLocation) < 0.5f)
         {
             explosion.Play();
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            Debug.Log("Playing");
-            
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;    
         }
         if(Vector3.Distance(gameObject.transform.position, PlayerLocation) < 0.1f)
         {
-            
             Destroy(gameObject);
         }
     }

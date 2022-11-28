@@ -19,6 +19,10 @@ public class RocketShooterAI : MonoBehaviour
     private float AiHealth;
     [SerializeField]
     private ParticleSystem bloodSplat;
+    [SerializeField]
+    private RuntimeAnimatorController[] clips;
+    private Animator theAnimator;
+
 
     void Start()
     {
@@ -26,6 +30,8 @@ public class RocketShooterAI : MonoBehaviour
         movingToDestination = true;
         rocketsCreated = new List<GameObject>();
         AiHealth = 70f;
+        theAnimator = gameObject.GetComponent<Animator>();
+        theAnimator.runtimeAnimatorController = clips[0];
     }
 
     // Update is called once per frame
@@ -35,6 +41,7 @@ public class RocketShooterAI : MonoBehaviour
 
         if (movingToDestination)
         {
+            
             gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, Destination, 5f * Time.deltaTime);
             if (Vector3.Distance(gameObject.transform.position, Destination) < 0.5f)
             {
@@ -50,8 +57,14 @@ public class RocketShooterAI : MonoBehaviour
         }
         else if(coolDownShotTimer < 0)
         {
+            theAnimator.runtimeAnimatorController = clips[1];
             coolDownShotTimer = 10f;
             rocketsCreated.Add(Instantiate(rocket, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.2f, gameObject.transform.position.z), gameObject.transform.rotation));
+        }
+        else if(coolDownShotTimer < 9.3f && coolDownShotTimer > 0)
+        {
+            Debug.Log("entering");
+            theAnimator.runtimeAnimatorController = clips[2];
         }
     }
     void OnDestroy()
