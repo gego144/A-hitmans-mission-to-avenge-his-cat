@@ -43,18 +43,23 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool isFacingRight;
     private Rigidbody2D rb2d;
     [SerializeField] private TrailRenderer tr;
+    private Animator theAnimator;
+    [SerializeField] private RuntimeAnimatorController[] animations;
 
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         isFacingRight = true;
+        theAnimator = gameObject.GetComponent<Animator>();
+
     }
 
 
 
     void Update()
     {
+
 
         lastJumpTime -= Time.deltaTime;
         lastGroundTime -= Time.deltaTime;
@@ -102,9 +107,6 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(Dash());
         }
 
-
-
-
         move();
 
     }
@@ -134,6 +136,19 @@ public class PlayerMovement : MonoBehaviour
         {
             Flip();
         }
+
+
+        if (moveHorizontal == 0 && !isJumping)
+        {
+            theAnimator.runtimeAnimatorController = animations[0];
+        }
+
+        if (moveHorizontal != 0 && !isJumping) {
+            theAnimator.runtimeAnimatorController = animations[1];
+        }
+
+
+
     }
 
 
@@ -143,6 +158,8 @@ public class PlayerMovement : MonoBehaviour
         jumpInputIsReleased = false;
         isJumping = true;
         rb2d.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        theAnimator.runtimeAnimatorController = animations[2];
+        Debug.Log("hello");
     }
 
 
