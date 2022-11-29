@@ -51,7 +51,7 @@ MonoBehaviour:
   - {fileID: 3972870208486516120, guid: 77625c4495768f547ae5395a086400da, type: 3}
   - {fileID: 8659468789276501108, guid: 75e20b35b7a2172428cc010582fec87f, type: 3}
   - {fileID: 2577513009783315835, guid: c3d5972d4a6360949aa22e4bcdb10fd9, type: 3}
-  weaponSelectionMenu: {fileID: 2876386573278239762, guid: e447ce5a8e5181644af89dc0cc966408,
+  weaponSelectionMenu: {fileID: 7747185984219602567, guid: 6ee17bbf5be86e8479507cebc63a5736,
     type: 3}
-  gadgetSelectionMenu: {fileID: 919315794558035216, guid: a5b2083983117c54693522c59c0a9145,
+  gadgetSelectionMenu: {fileID: 3051699279416299360, guid: 7f91ad3fcaecdd94eac0c924e15b4ad0,
     type: 3}
