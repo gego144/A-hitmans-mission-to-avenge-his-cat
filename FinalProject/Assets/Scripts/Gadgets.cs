@@ -44,6 +44,7 @@ public class Gadgets : MonoBehaviour
         //Check for mouse click 
         if (Input.GetButtonDown("Fire2") && gadgetCooldown < 0f)
         {
+            Debug.Log(gadgetType);
             switch (gadgetType) {
                 case "Teleport":
                     gadgetCooldown = 5f;
