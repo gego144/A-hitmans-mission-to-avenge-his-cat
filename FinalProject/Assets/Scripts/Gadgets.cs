@@ -51,7 +51,7 @@ public class Gadgets : MonoBehaviour
                     gadgetCooldown = 5f;
                     RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-                    if (hit.collider == null)
+                    if (hit.collider == null || hit.collider.tag == "TileMap")
                     {
                         teleportParticles.Play();
                         Vector3 clickLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
