@@ -10,7 +10,6 @@ public class DroneEnemyAI : MonoBehaviour
     private GameObject droneBulletPrefab;
     private bool movingToPlayer;
     private Vector3 playerLocation;
-    [SerializeField]
     private GameObject isInvisible;
     [SerializeField]
     private float AiHealth;
@@ -21,6 +20,7 @@ public class DroneEnemyAI : MonoBehaviour
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
+        isInvisible = Player.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
         bullet = Instantiate(droneBulletPrefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.2f, gameObject.transform.position.z), gameObject.transform.rotation);
         movingToPlayer = false;
         AiHealth = 50f;

@@ -15,10 +15,12 @@ public class WeaponSelect : MonoBehaviour
     public void WeaponClicked()
     {
         string weaponSelected = EventSystem.current.currentSelectedGameObject.name;
+        Debug.Log(weaponSelected);
         switch (weaponSelected)
         {
             case "Dagger":
                 weapons[0].SetActive(true);
+                Debug.Log(weapons[0].activeInHierarchy);
                 break;
             case "Sword":
                 weapons[1].SetActive(true);
