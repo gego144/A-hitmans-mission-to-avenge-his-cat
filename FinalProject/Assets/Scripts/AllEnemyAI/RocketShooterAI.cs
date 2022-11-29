@@ -63,7 +63,6 @@ public class RocketShooterAI : MonoBehaviour
         }
         else if(coolDownShotTimer < 9.3f && coolDownShotTimer > 0)
         {
-            Debug.Log("entering");
             theAnimator.runtimeAnimatorController = clips[2];
         }
     }
