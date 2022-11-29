@@ -159,7 +159,6 @@ public class PlayerMovement : MonoBehaviour
         isJumping = true;
         rb2d.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         theAnimator.runtimeAnimatorController = animations[2];
-        Debug.Log("hello");
     }
 
 

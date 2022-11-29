@@ -12,6 +12,7 @@ public class GadgetSelect : MonoBehaviour
     public void GadgetClicked()
     {
         string GadgetSelected = EventSystem.current.currentSelectedGameObject.name;
+        Debug.Log(GadgetSelected);
         switch (GadgetSelected)
         {
             case "Teleport":
