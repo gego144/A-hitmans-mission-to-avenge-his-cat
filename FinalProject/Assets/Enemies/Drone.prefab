@@ -128,8 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   droneBulletPrefab: {fileID: 680490467837449236, guid: bd29439c470680443bc63116ea24f593,
     type: 3}
-  isInvisible: {fileID: 0}
-  AiHealth: 0
+  AiHealth: 100
   bloodSplat: {fileID: 7147662781100289101}
 --- !u!95 &1850853514
 Animator:

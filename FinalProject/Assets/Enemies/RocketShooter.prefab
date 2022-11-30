@@ -151,7 +151,7 @@ MonoBehaviour:
   Destination: {x: -8.38, y: -2.519456, z: -0.15}
   coolDownShotTimer: 2
   rocket: {fileID: 2740492198992249125, guid: 4bb4970fef144a946a11e8606eeaa407, type: 3}
-  AiHealth: 0
+  AiHealth: 100
   bloodSplat: {fileID: 584618972872841322}
   clips:
   - {fileID: 9100000, guid: 02834c0b37cb76141b82a94a0f640b51, type: 2}

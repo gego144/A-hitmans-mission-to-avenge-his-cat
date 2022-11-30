@@ -27,13 +27,13 @@ public class HomingRocket : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        Debug.Log(collision.gameObject.name);
+        if(collision.gameObject.tag == "Player") {
             health.TakeDamage(25f);
             Destroy(gameObject);
         }
-
     }
+
 }
