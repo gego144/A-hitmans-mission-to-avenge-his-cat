@@ -8,7 +8,7 @@ public class RocketShooterAI : MonoBehaviour
     public Vector3 Destination;
     private bool movingToDestination;
 
-    [SerializeField]
+    [SerializeField] private float fireRate;
     private float coolDownShotTimer;
     [SerializeField]
     private GameObject rocket;
@@ -21,6 +21,7 @@ public class RocketShooterAI : MonoBehaviour
     [SerializeField]
     private RuntimeAnimatorController[] clips;
     private Animator theAnimator;
+    [SerializeField] private float homingDistance;
 
 
     void Start()
@@ -38,6 +39,7 @@ public class RocketShooterAI : MonoBehaviour
     void Update()
     {
         coolDownShotTimer -= Time.deltaTime;
+        float distance = Vector2.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, this.gameObject.transform.position);
 
         if (movingToDestination)
         {
@@ -55,13 +57,13 @@ public class RocketShooterAI : MonoBehaviour
                 Destroy(flyingRocket);
             }
         }
-        else if(coolDownShotTimer < 0)
+        else if(coolDownShotTimer < 0 && distance < homingDistance)
         {
             theAnimator.runtimeAnimatorController = clips[1];
-            coolDownShotTimer = 10f;
+            coolDownShotTimer = fireRate;
             rocketsCreated.Add(Instantiate(rocket, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.2f, gameObject.transform.position.z), gameObject.transform.rotation));
         }
-        else if(coolDownShotTimer < 9.3f && coolDownShotTimer > 0)
+        else if(coolDownShotTimer < fireRate - 0.1*fireRate && coolDownShotTimer > 0)
         {
             theAnimator.runtimeAnimatorController = clips[2];
         }

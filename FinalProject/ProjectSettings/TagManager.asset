@@ -8,6 +8,9 @@ TagManager:
   - RocketShooterAI
   - DroneEnemyAI
   - Hazard
+  - TileMap
+  - ArmBoss
+  - Terrain
   layers:
   - Default
   - TransparentFX
