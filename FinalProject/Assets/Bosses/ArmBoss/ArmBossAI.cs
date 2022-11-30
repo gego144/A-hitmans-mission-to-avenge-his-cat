@@ -41,10 +41,7 @@ public class ArmBossAI : MonoBehaviour
 
     [SerializeField] private float AiHealth;
     // Start is called before the first frame update
-    private void Awake()
-    {
-        
-    }
+
     void Start()
     {
         
@@ -96,18 +93,16 @@ public class ArmBossAI : MonoBehaviour
             if (MovingToPlayer && timer < 0)
             {
 
-                //animationPlayer.runtimeAnimatorController = animations[1];
-                transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, 4f * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, 6f * Time.deltaTime);
 
                 if (Vector2.Distance(transform.position, Player.transform.position) < 1.25f)
                 {
                     punching = true;
                     bossCollider.size = new Vector2(bossCollider.size.x + 0.5f, bossCollider.size.y);
-                    rb2d.AddForce(Vector2.up * 10f, ForceMode2D.Impulse);
 
 
-                    timer = 2f;
-                    StartCoroutine(QueueAnimation(animations[2], animations[1], "swing"));
+                    timer = 0.9f;
+                    StartCoroutine(QueueAnimation(animations[2], animations[0], "swing"));
 
 
                 }
@@ -148,7 +143,6 @@ public class ArmBossAI : MonoBehaviour
             }
             if (isGrounded() && Vector2.Distance(transform.position, Player.transform.position) < 4f)
             {
-                Debug.Log("STOMP");
                 playersHealth.TakeDamage(15f);
             }
             attackTurnTimer[1] -= Time.deltaTime;
@@ -159,22 +153,27 @@ public class ArmBossAI : MonoBehaviour
         {
             if (spikeTimer < 0)
             {
-                animationPlayer.runtimeAnimatorController = animations[4];
                 inBetweenSpikesTimer = 0.5f;
                 spikeTimer = 1f;
                 Instantiate(spikes, new Vector3(Player.transform.position.x, -1.844f, Player.transform.position.z), gameObject.transform.rotation);
                 spikeAttack = false;
+                StartCoroutine(QueueAnimation(animations[4], animations[0], "spikes"));
 
             }
-            if (inBetweenSpikesTimer < 0)
-            {
-                animationPlayer.runtimeAnimatorController = animations[0];
-            }
             attackTurnTimer[2] -= Time.deltaTime;
+        }
+        else
+        {
+            if(animationPlayer.runtimeAnimatorController == animations[0])
+            {
+                animationPlayer.runtimeAnimatorController = animations[1];
+            }
+            
         }
 
         if(attackTurnTimer[2] < 0)
         {
+            animationPlayer.runtimeAnimatorController = animations[1];
             for (int i = 0; i <= 2; i++)
             {
                 attackTurnTimer[i] = Random.Range(5f, 10f);
@@ -212,6 +211,7 @@ public class ArmBossAI : MonoBehaviour
 
     IEnumerator QueueAnimation(RuntimeAnimatorController firstClip, RuntimeAnimatorController secondClip, string anim)
     {
+
         if (anim == "hurt")
         {
             //if(animationPlayer.runtimeAnimatorController.)
@@ -219,8 +219,16 @@ public class ArmBossAI : MonoBehaviour
             animationPlayer.runtimeAnimatorController = firstClip;
             yield return new WaitForSeconds(0.167f);
             animationPlayer.runtimeAnimatorController = secondClip;
-
-
+        }
+        else if (anim == "spikes")
+        {
+            animationPlayer.runtimeAnimatorController = firstClip;
+            yield return new WaitForSeconds(0.5f);
+            if(attackTurnTimer[2] > 0)
+            {
+                animationPlayer.runtimeAnimatorController = secondClip;
+            }
+            
         }
         else
         {
@@ -229,6 +237,8 @@ public class ArmBossAI : MonoBehaviour
             bossCollider.size = new Vector2(bossCollider.size.x - 0.5f, bossCollider.size.y);
             animationPlayer.runtimeAnimatorController = secondClip;
             punching = false;
+            yield return new WaitForSeconds(0.5f);
+            animationPlayer.runtimeAnimatorController = animations[1];
         }
 
     }

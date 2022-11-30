@@ -198,6 +198,17 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 265839066943245566, guid: 3dd43eeebf5d27e4c9349f81a2fd329e,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 909358496, guid: 95055f0c28bd6b943951c2babe64d9d1,
+        type: 3}
+    - target: {fileID: 265839066943245567, guid: 3dd43eeebf5d27e4c9349f81a2fd329e,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 166f7afdc9d411443b8650deff2e97c6, type: 2}
     - target: {fileID: 2257921840428952221, guid: 3dd43eeebf5d27e4c9349f81a2fd329e,
         type: 3}
       propertyPath: m_Name
