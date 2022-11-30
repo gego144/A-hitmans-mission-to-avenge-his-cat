@@ -129,7 +129,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Destination: {x: -4.792, y: -2.611, z: -0.15}
-  isInvisible: {fileID: 0}
   AiHealth: 0
   bloodSplat: {fileID: 7266153505741514692}
   clips:
@@ -156,7 +155,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &1193116334
 Animator:
   serializedVersion: 4
