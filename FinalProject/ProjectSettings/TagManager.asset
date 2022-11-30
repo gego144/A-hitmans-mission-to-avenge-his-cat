@@ -50,8 +50,14 @@ TagManager:
   - name: tree base
     uniqueID: 1174749505
     locked: 0
+  - name: Black
+    uniqueID: 803030909
+    locked: 0
   - name: tree top
     uniqueID: 2846921535
+    locked: 0
+  - name: background
+    uniqueID: 3441507817
     locked: 0
   - name: Default
     uniqueID: 0
