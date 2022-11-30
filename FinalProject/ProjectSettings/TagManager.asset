@@ -9,6 +9,7 @@ TagManager:
   - DroneEnemyAI
   - Hazard
   - TileMap
+  - ArmBoss
   layers:
   - Default
   - TransparentFX
