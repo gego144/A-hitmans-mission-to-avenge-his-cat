@@ -102,3 +102,4 @@ MonoBehaviour:
   maxDistance: 100
   projectile: {fileID: 8987246316157032603, guid: d9a708faa8a668b478fb91e96d6353e6,
     type: 3}
+  damage: 0

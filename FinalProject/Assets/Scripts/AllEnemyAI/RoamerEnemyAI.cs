@@ -11,7 +11,6 @@ public class RoamerEnemyAI : MonoBehaviour
     private GameObject Player;
     private bool movingToPlayer;
     private PlayerHealth health;
-    [SerializeField]
     private GameObject isInvisible;
     [SerializeField]
     private float AiHealth;
@@ -28,6 +27,7 @@ public class RoamerEnemyAI : MonoBehaviour
     {
         StartLocation = gameObject.transform.position;
         Player = GameObject.FindGameObjectWithTag("Player");
+        isInvisible = Player.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
         movingToDestination = true;
         movingToPlayer = false;
         health = Player.GetComponent<PlayerHealth>();

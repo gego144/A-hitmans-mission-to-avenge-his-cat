@@ -17,7 +17,6 @@ public class Gadgets : MonoBehaviour
     // Invisibility parts
     [SerializeField]
     private SpriteRenderer invisibilityMaterial;
-    [SerializeField]
     private GameObject currentlyInvisible;
     private Color lowerAlpha;
     
@@ -32,6 +31,8 @@ public class Gadgets : MonoBehaviour
     void Start()
     {
         gadgetCooldown = 0f;
+        //invisible parts
+        currentlyInvisible = player.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
 
         //Rage parts
         playerDisplay = gameObject.GetComponent<SpriteRenderer>();
@@ -44,6 +45,7 @@ public class Gadgets : MonoBehaviour
         //Check for mouse click 
         if (Input.GetButtonDown("Fire2") && gadgetCooldown < 0f)
         {
+            Debug.Log(gadgetType);
             switch (gadgetType) {
                 case "Teleport":
                     gadgetCooldown = 5f;

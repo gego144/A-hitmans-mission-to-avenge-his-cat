@@ -7,6 +7,7 @@ TagManager:
   - RoamerEnemyAI
   - RocketShooterAI
   - DroneEnemyAI
+  - Hazard
   layers:
   - Default
   - TransparentFX
@@ -41,12 +42,10 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: background2
-    uniqueID: 4277042321
-    locked: 0
   - name: background1
     uniqueID: 621742389
     locked: 0
+<<<<<<< HEAD
   - name: tree base
     uniqueID: 1174749505
     locked: 0
@@ -55,6 +54,10 @@ TagManager:
     locked: 0
   - name: tree top
     uniqueID: 2846921535
+=======
+  - name: background2
+    uniqueID: 4277042321
+>>>>>>> origin/main
     locked: 0
   - name: background
     uniqueID: 3441507817

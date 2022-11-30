@@ -13,7 +13,6 @@ public class RocketShooterAI : MonoBehaviour
     [SerializeField]
     private GameObject rocket;
     private List<GameObject> rocketsCreated;
-    [SerializeField]
     private GameObject isInvisible;
     [SerializeField]
     private float AiHealth;
@@ -26,6 +25,7 @@ public class RocketShooterAI : MonoBehaviour
 
     void Start()
     {
+        isInvisible = GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
         StartLocation = gameObject.transform.position;
         movingToDestination = true;
         rocketsCreated = new List<GameObject>();
