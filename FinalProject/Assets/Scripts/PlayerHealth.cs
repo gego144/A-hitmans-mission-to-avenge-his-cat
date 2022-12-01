@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI healthText;
-    private float health;
+    [HideInInspector] public float health;
     private bool justTookDamage;
     [SerializeField]
     private ParticleSystem blood;
