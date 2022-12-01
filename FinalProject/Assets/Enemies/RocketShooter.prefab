@@ -102,18 +102,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.084834516, y: -0.12213755}
+  m_Offset: {x: 0.0019315779, y: -0.0010231547}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.48, y: 0.48}
+    oldSize: {x: 0.27, y: 0.24}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.26638854, y: 0.24146575}
+  m_Size: {x: 0.27404433, y: 0.2419824}
   m_EdgeRadius: 0
 --- !u!50 &8946676088625041460
 Rigidbody2D:
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Destination: {x: -8.38, y: -2.519456, z: -0.15}
-  coolDownShotTimer: 2
+  fireRate: 0
   rocket: {fileID: 2740492198992249125, guid: 4bb4970fef144a946a11e8606eeaa407, type: 3}
   AiHealth: 100
   bloodSplat: {fileID: 584618972872841322}
@@ -157,6 +157,7 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 02834c0b37cb76141b82a94a0f640b51, type: 2}
   - {fileID: 9100000, guid: 7803583b1227f364a805c0a3da2192c3, type: 2}
   - {fileID: 9100000, guid: f9630720d4289c446bdebd90be5bb763, type: 2}
+  homingDistance: 0
 --- !u!95 &1228991728
 Animator:
   serializedVersion: 4
