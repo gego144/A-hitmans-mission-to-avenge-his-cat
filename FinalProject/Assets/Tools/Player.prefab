@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthText: {fileID: 0}
+  health: 0
   blood: {fileID: 5743341759854924659}
 --- !u!96 &8596234427921454430
 TrailRenderer:

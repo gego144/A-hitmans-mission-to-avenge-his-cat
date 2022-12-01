@@ -106,9 +106,9 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Fire3") && canDash) {
             StartCoroutine(Dash());
         }
-
-        move();
-
+        if (!LevelManager.isPaused) {
+            move();
+        }
     }
 
 
@@ -228,10 +228,6 @@ public class PlayerMovement : MonoBehaviour
         return isFacingRight;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log(collision.transform.name);
-    }
 
 
 
