@@ -9,7 +9,6 @@ public class GadgetSelect : MonoBehaviour
     [SerializeField]
     private GameObject gadgetSelectionMenu;
     // Start is called before the first frame update
-    [SerializeField] private AudioSource UIClickSE;
     public void GadgetClicked()
     {
         string GadgetSelected = EventSystem.current.currentSelectedGameObject.name;
@@ -26,7 +25,6 @@ public class GadgetSelect : MonoBehaviour
                 gadgets.gadgetType = "Rage";
                 break;
         }
-        UIClickSE.Play();
         CloseGadgetSelect();
     }
     public void CloseGadgetSelect()

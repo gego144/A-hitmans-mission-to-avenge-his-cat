@@ -11,7 +11,6 @@ public class WeaponSelect : MonoBehaviour
     private GameObject weaponSelectionMenu;
     [SerializeField]
     private GameObject gadgetSelectionMenu;
-    [SerializeField] private AudioSource UIClickSE;
 
     public void WeaponClicked()
     {
@@ -39,7 +38,6 @@ public class WeaponSelect : MonoBehaviour
                 weapons[5].SetActive(true);
                 break;
         }
-        UIClickSE.Play();
         CloseWeaponSelect();
         OpenGadgetSelect();
     }
