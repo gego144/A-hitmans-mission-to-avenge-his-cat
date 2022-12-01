@@ -13,61 +13,186 @@ public class ArmBossAI : MonoBehaviour
     private Animator animationPlayer;
 
     private bool MovingToPlayer;
+    private bool punching;
     private float timer;
+
     [SerializeField]
     private bool isFacingRight;
     private float AirTime;
-   
+    private Rigidbody2D rb2d;
+
+    private bool jumpToPlayer;
+    private Vector2 lastPlayerLocation;
+    private float lastJumpTime;
+    [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float jumpSpeed;
+    private BoxCollider2D bossCollider;
+    private Collider2D playerCollider;
+    private ContactFilter2D filter;
+
+
+    [SerializeField] private GameObject spikes;
+    private bool spikeAttack;
+    private float spikeTimer;
+    private float inBetweenSpikesTimer;
+
+    private float[] attackTurnTimer;
+
+    [SerializeField] private float AiHealth;
     // Start is called before the first frame update
+
     void Start()
     {
+        
+        rb2d = gameObject.GetComponent<Rigidbody2D>();
+        bossCollider = gameObject.GetComponent<BoxCollider2D>();
+        playerCollider = Player.GetComponent<BoxCollider2D>();
+        filter.layerMask = whatIsGround;
+        isFacingRight = true;
+
         playersHealth = Player.GetComponent<PlayerHealth>();
 
         animationPlayer = gameObject.GetComponent<Animator>();
         timer = 0;
-        AirTime = 0;
 
         MovingToPlayer = true;
-        isFacingRight = true;
-        //transform.Translate(new Vector3(0, 5f, 0) * Time.deltaTime);
+        punching = false;
+
+
+        jumpToPlayer = false;
+        lastJumpTime = 0;
+
+        spikeAttack = true;
+        spikeTimer = 2f;
+        attackTurnTimer = new float[3];
+
+        for(int i = 0; i <= 2; i++)
+        {
+            attackTurnTimer[i] = Random.Range(5f, 10f);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        // code where boss moves to player and if they in certain distance, swings (attack 2)
-        if (MovingToPlayer && timer < 1f)
+
+        if (isGrounded() && Player.transform.position.x > gameObject.transform.position.x && !isFacingRight)
         {
-            if (Vector2.Distance(transform.position, Player.transform.position) > 5f && AirTime < 5f)
+            Flip();
+        }
+        else if (isGrounded() && Player.transform.position.x < gameObject.transform.position.x && isFacingRight)
+        {
+            Flip();
+        }
+
+        // code where boss moves to player and if they in certain distance, swings (attack 2)
+        if (attackTurnTimer[0] > 0)
+        {
+            if (MovingToPlayer && timer < 0)
             {
-                AirTime = 10f;
-                gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 20f);
+
+                transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, 6f * Time.deltaTime);
+
+                if (Vector2.Distance(transform.position, Player.transform.position) < 1.25f)
+                {
+                    punching = true;
+                    bossCollider.size = new Vector2(bossCollider.size.x + 0.5f, bossCollider.size.y);
+
+
+                    timer = 0.9f;
+                    StartCoroutine(QueueAnimation(animations[2], animations[0], "swing"));
+
+
+                }
+            }
+            attackTurnTimer[0] -= Time.deltaTime;
+        }
+
+        // boss jumping attack (attack 4)
+        else if (attackTurnTimer[1] > 0)
+        {
+            if (!jumpToPlayer && isGrounded() && lastJumpTime < 0)
+            {
+                if (isGrounded())
+                {
+                    jumpToPlayer = true;
+                    rb2d.AddForce(Vector2.up * 100f, ForceMode2D.Impulse);
+                }
+
+                lastPlayerLocation = Player.transform.position;
+                animationPlayer.runtimeAnimatorController = animations[0];
+            }
+
+            if (jumpToPlayer)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(lastPlayerLocation.x, 0), jumpSpeed * Time.deltaTime);
+                lastJumpTime = 5f;
+                if (Vector2.Distance(new Vector2(transform.position.x, 0), new Vector2(lastPlayerLocation.x, 0)) < 1f)
+                {
+                    animationPlayer.runtimeAnimatorController = animations[3];
+                    Debug.Log(Vector2.Distance(transform.position, new Vector2(Player.transform.position.x, Player.transform.position.y)));
+                    lastJumpTime = 1f;
+                    jumpToPlayer = false;
+                }
+            }
+            if (rb2d.velocity.x < 0.5f && !jumpToPlayer)
+            {
+                rb2d.AddForce(Vector2.down * 10f * rb2d.mass);
+            }
+            if (isGrounded() && Vector2.Distance(transform.position, Player.transform.position) < 4f)
+            {
+                playersHealth.TakeDamage(15f);
+            }
+            attackTurnTimer[1] -= Time.deltaTime;
+        }
+
+        // boss spike attack (special)
+        else if(attackTurnTimer[2] > 0)
+        {
+            if (spikeTimer < 0)
+            {
+                inBetweenSpikesTimer = 0.5f;
+                spikeTimer = 1f;
+                Instantiate(spikes, new Vector3(Player.transform.position.x, -1.844f, Player.transform.position.z), gameObject.transform.rotation);
+                spikeAttack = false;
+                StartCoroutine(QueueAnimation(animations[4], animations[0], "spikes"));
+
+            }
+            attackTurnTimer[2] -= Time.deltaTime;
+        }
+        else
+        {
+            if(animationPlayer.runtimeAnimatorController == animations[0])
+            {
+                animationPlayer.runtimeAnimatorController = animations[1];
             }
             
-            if(Player.transform.position.x > gameObject.transform.position.x && !isFacingRight)
-            {
-                Flip();
-            }
-            else if (Player.transform.position.x < gameObject.transform.position.x && isFacingRight)
-            {
-                Flip();
-            }
+        }
+
+        if(attackTurnTimer[2] < 0)
+        {
             animationPlayer.runtimeAnimatorController = animations[1];
-            transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, 2f * Time.deltaTime);
-            //Debug.Log(Vector2.Distance(transform.position, Player.transform.position));
-            if (Vector2.Distance(transform.position, Player.transform.position) < 1.25f)
+            for (int i = 0; i <= 2; i++)
             {
-                
-                playersHealth.TakeDamage(15f);
-                animationPlayer.runtimeAnimatorController = animations[2];
-                timer = 2f;
+                attackTurnTimer[i] = Random.Range(5f, 10f);
             }
         }
-        // code where boss moves to player and if they in certain distance, swings (attack 1)
-
+        
+        
+        
         timer -= Time.deltaTime;
-        AirTime -= Time.deltaTime;
+        lastJumpTime -= Time.deltaTime;
+        spikeTimer -= Time.deltaTime;
+        inBetweenSpikesTimer -= Time.deltaTime;
+    }
+
+    public bool AiHealthDamage(float damage)
+    {
+        StartCoroutine(QueueAnimation(animations[5], animations[0], "hurt"));
+        AiHealth -= damage;
+        return AiHealth <= 0;
     }
 
     private void Flip()
@@ -77,4 +202,56 @@ public class ArmBossAI : MonoBehaviour
         gameObject.transform.localScale = currentScale;
         isFacingRight = !isFacingRight;
     }
+
+    private bool isGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, whatIsGround);
+    }
+
+    IEnumerator QueueAnimation(RuntimeAnimatorController firstClip, RuntimeAnimatorController secondClip, string anim)
+    {
+
+        if (anim == "hurt")
+        {
+            //if(animationPlayer.runtimeAnimatorController.)
+            secondClip = animationPlayer.runtimeAnimatorController;
+            animationPlayer.runtimeAnimatorController = firstClip;
+            yield return new WaitForSeconds(0.167f);
+            animationPlayer.runtimeAnimatorController = secondClip;
+        }
+        else if (anim == "spikes")
+        {
+            animationPlayer.runtimeAnimatorController = firstClip;
+            yield return new WaitForSeconds(0.5f);
+            if(attackTurnTimer[2] > 0)
+            {
+                animationPlayer.runtimeAnimatorController = secondClip;
+            }
+            
+        }
+        else
+        {
+            animationPlayer.runtimeAnimatorController = firstClip;
+            yield return new WaitForSeconds(0.5f);
+            bossCollider.size = new Vector2(bossCollider.size.x - 0.5f, bossCollider.size.y);
+            animationPlayer.runtimeAnimatorController = secondClip;
+            punching = false;
+            yield return new WaitForSeconds(0.5f);
+            animationPlayer.runtimeAnimatorController = animations[1];
+        }
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.transform.tag == "Player")
+        {
+            if (punching)
+            {
+                Debug.Log("hit");
+                playersHealth.TakeDamage(15f);
+            }
+        }
+    }
+
 }
