@@ -10,12 +10,17 @@ public class Bullet : MonoBehaviour
     private bool isFacingRight;
     [SerializeField]
     private PlayerMovement playerMovementObj;
+    private PlayerHealth healthScript;
+    private float playerHealth;
     private Vector3 leftSide;
     private float damage;
+    [SerializeField] private float healthRestore;
 
     void Start()
     {
         playerMovementObj = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        healthScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+        healthRestore = 20f;
         leftSide = new Vector3(-1.0f, 0, 0);
         isFacingRight = playerMovementObj.getFacingDirection();
         if (isFacingRight)
@@ -29,6 +34,8 @@ public class Bullet : MonoBehaviour
     }
     void Update()
     {
+        playerHealth = healthScript.health;
+
         timer -= Time.deltaTime;
         if (timer < 0f)
         {
@@ -68,6 +75,13 @@ public class Bullet : MonoBehaviour
             if (killedAI)
             {
                 Destroy(collision.gameObject);
+                if(playerHealth + healthRestore > 100) {
+                    healthScript.health = 100;
+                }
+                else {
+                    healthScript.health += healthRestore;
+                }
+
             }
         }
         else if (collision.tag == "Player")

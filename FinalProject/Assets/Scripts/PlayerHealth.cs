@@ -19,12 +19,15 @@ public class PlayerHealth : MonoBehaviour
         justTookDamage = false;
     }
 
+    private void Update() {
+        healthText.text = Convert.ToString(health);
+    }
+
     public void TakeDamage(float damage)
     {
         if (!justTookDamage) {
             blood.Play();
             health -= damage;
-            healthText.text = Convert.ToString(health);
             StartCoroutine(timeBetweenDamage());
         }
     }

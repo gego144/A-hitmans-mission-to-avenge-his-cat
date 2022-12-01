@@ -12,6 +12,7 @@ TagManager:
   - ArmBoss
   - Terrain
   - FlyBoss
+  - Enemies
   layers:
   - Default
   - TransparentFX
