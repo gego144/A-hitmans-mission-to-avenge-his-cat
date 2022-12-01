@@ -22,6 +22,8 @@ public class RoamerEnemyAI : MonoBehaviour
     private bool isFacingRight;
     private Animator theAnimator;
     private float attackTimer = 0.7f;
+    [SerializeField] private float detectionDistance;
+    [SerializeField] private float safeDistance;
 
     void Start()
     {
@@ -38,27 +40,10 @@ public class RoamerEnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //FLIP HIM BACK UP IF HE FALLS ON BACK
-        if(gameObject.transform.rotation.z >= 0.7f || gameObject.transform.rotation.z <= -0.7f)
-        {
-            gameObject.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
-        }
-        if(Vector3.Distance(gameObject.transform.position, Player.transform.position) < 5f)
+        if(Vector3.Distance(gameObject.transform.position, Player.transform.position) < detectionDistance)
         {
             movingToPlayer = true;
-            if(attackTimer < 0)
-            {
-                theAnimator.runtimeAnimatorController = clips[0];
-            }
-            
-        }
-        else
-        {
-            movingToPlayer = false;
-            if (attackTimer < 0)
-            {
-                theAnimator.runtimeAnimatorController = clips[0];
-            }
+
         }
 
         if (movingToPlayer && !isInvisible.activeSelf)
@@ -73,10 +58,10 @@ public class RoamerEnemyAI : MonoBehaviour
                 Flip();
             }
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, Player.transform.position, 2.3f * Time.deltaTime);
-            if(Vector3.Distance(gameObject.transform.position, Player.transform.position) < 0.8f)
+            if(Vector3.Distance(gameObject.transform.position, Player.transform.position) < 0.25*detectionDistance && attackTimer <= 0)
             {
                 attackTimer = 1f;
-                theAnimator.runtimeAnimatorController = clips[1];
+                StartCoroutine(QueueAnimation(clips[1], clips[0]));
                 health.TakeDamage(20f);
                 movingToPlayer = false;
             }
@@ -114,6 +99,13 @@ public class RoamerEnemyAI : MonoBehaviour
             movingToDestination = !movingToDestination;
         }
         attackTimer -= Time.deltaTime;
+
+        if(Vector3.Distance(gameObject.transform.position, Player.transform.position) >= safeDistance) {
+            movingToPlayer = false;
+        }
+
+        Debug.Log(Vector3.Distance(gameObject.transform.position, Player.transform.position));
+
     }
 
     public bool AiHealthDamage(float damage)
@@ -131,4 +123,12 @@ public class RoamerEnemyAI : MonoBehaviour
         isFacingRight = !isFacingRight;
     }
 
+    IEnumerator QueueAnimation(RuntimeAnimatorController firstClip, RuntimeAnimatorController secondClip) {
+
+        theAnimator.runtimeAnimatorController = firstClip;
+        yield return new WaitForSeconds(0.7f);
+        theAnimator.runtimeAnimatorController = secondClip;
+    }
+
 }
+
