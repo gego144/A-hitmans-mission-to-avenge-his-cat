@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float velPower;
 
     [Header("Jump Variables")]
+    [SerializeField] private AudioSource jumpSE;
     [SerializeField] private float jumpCoyoteTime = 0.5f;
     [SerializeField] private float jumpBufferTime = 0.5f;
     [SerializeField] private float lastGroundTime;
@@ -106,9 +107,9 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Fire3") && canDash) {
             StartCoroutine(Dash());
         }
-
-        move();
-
+        if (!LevelManager.isPaused) {
+            move();
+        }
     }
 
 
@@ -158,6 +159,7 @@ public class PlayerMovement : MonoBehaviour
         jumpInputIsReleased = false;
         isJumping = true;
         rb2d.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        jumpSE.Play();
         theAnimator.runtimeAnimatorController = animations[2];
     }
 
