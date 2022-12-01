@@ -11,6 +11,7 @@ TagManager:
   - TileMap
   - ArmBoss
   - Terrain
+  - FlyBoss
   layers:
   - Default
   - TransparentFX

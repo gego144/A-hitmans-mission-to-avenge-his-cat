@@ -40,7 +40,6 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.name);
         if(collision.gameObject.layer == 3)
         {
             Destroy(gameObject);
@@ -60,8 +59,10 @@ public class Bullet : MonoBehaviour
                     killedAI = collision.gameObject.GetComponent<DroneEnemyAI>().AiHealthDamage(damage);
                     break;
                 case "ArmBoss":
-                    Debug.Log("ok");
-                    killedAI = collision.gameObject.GetComponent<ArmBossAI>().AiHealthDamage(50f);
+                    killedAI = collision.gameObject.GetComponent<ArmBossAI>().AiHealthDamage(damage);
+                    break;
+                case "FlyBoss":
+                    killedAI = collision.gameObject.GetComponent<FlyBossAI>().AiHealthDamage(damage);
                     break;
             }
             if (killedAI)
