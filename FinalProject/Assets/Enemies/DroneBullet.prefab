@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 4654436557597854407}
+  projectileSpeed: 4
 --- !u!61 &7207135445687840799
 BoxCollider2D:
   m_ObjectHideFlags: 0

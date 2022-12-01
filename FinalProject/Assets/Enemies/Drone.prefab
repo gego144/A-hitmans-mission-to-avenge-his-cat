@@ -130,6 +130,8 @@ MonoBehaviour:
     type: 3}
   AiHealth: 100
   bloodSplat: {fileID: 7147662781100289101}
+  moveSpeed: 8
+  moveRate: 3
 --- !u!95 &1850853514
 Animator:
   serializedVersion: 4
