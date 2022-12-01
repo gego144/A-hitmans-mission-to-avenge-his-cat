@@ -11,10 +11,15 @@ public class Shuriken : MonoBehaviour
     [SerializeField]
     private PlayerMovement playerMovementObj;
     private Vector3 leftSide;
+    private PlayerHealth healthScript;
+    [SerializeField] private float healthRestore;
+    private float playerHealth;
 
     void Start()
     {
         playerMovementObj = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        healthScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+        healthRestore = 20f;
         leftSide = new Vector3(-1.0f, 0, 0);
         isFacingRight = playerMovementObj.getFacingDirection();
         if (isFacingRight)
@@ -29,6 +34,7 @@ public class Shuriken : MonoBehaviour
     }
     void Update()
     {
+        playerHealth = healthScript.health;
         timer -= Time.deltaTime;
         if (timer < 0f)
         {
@@ -60,15 +66,22 @@ public class Shuriken : MonoBehaviour
                 case "DroneEnemyAI":
                     killedAI = collision.gameObject.GetComponent<DroneEnemyAI>().AiHealthDamage(50f);
                     break;
-
                 case "ArmBoss":
                     killedAI = collision.gameObject.GetComponent<ArmBossAI>().AiHealthDamage(50f);
                     break;
-
+                case "FlyBoss":
+                    killedAI = collision.gameObject.GetComponent<FlyBossAI>().AiHealthDamage(50f);
+                    break;
             }
             if (killedAI)
             {
                 Destroy(collision.gameObject);
+                if (playerHealth + healthRestore > 100) {
+                    healthScript.health = 100;
+                }
+                else {
+                    healthScript.health += healthRestore;
+                }
             }
         }
         else if (collision.tag == "Player")
