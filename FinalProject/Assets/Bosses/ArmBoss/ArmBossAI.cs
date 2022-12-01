@@ -190,6 +190,7 @@ public class ArmBossAI : MonoBehaviour
 
     public bool AiHealthDamage(float damage)
     {
+        Debug.Log("DIE");
         StartCoroutine(QueueAnimation(animations[5], animations[0], "hurt"));
         AiHealth -= damage;
         return AiHealth <= 0;
