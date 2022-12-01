@@ -228,6 +228,10 @@ public class PlayerMovement : MonoBehaviour
         return isFacingRight;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.transform.name);
+    }
 
 
 

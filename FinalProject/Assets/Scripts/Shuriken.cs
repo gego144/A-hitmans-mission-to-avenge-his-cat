@@ -63,6 +63,9 @@ public class Shuriken : MonoBehaviour
                 case "ArmBoss":
                     killedAI = collision.gameObject.GetComponent<ArmBossAI>().AiHealthDamage(50f);
                     break;
+                case "FlyBoss":
+                    killedAI = collision.gameObject.GetComponent<FlyBossAI>().AiHealthDamage(50f);
+                    break;
             }
             if (killedAI)
             {

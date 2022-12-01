@@ -59,8 +59,10 @@ public class Bullet : MonoBehaviour
                     killedAI = collision.gameObject.GetComponent<DroneEnemyAI>().AiHealthDamage(damage);
                     break;
                 case "ArmBoss":
-                    Debug.Log("ok");
-                    killedAI = collision.gameObject.GetComponent<ArmBossAI>().AiHealthDamage(50f);
+                    killedAI = collision.gameObject.GetComponent<ArmBossAI>().AiHealthDamage(damage);
+                    break;
+                case "FlyBoss":
+                    killedAI = collision.gameObject.GetComponent<FlyBossAI>().AiHealthDamage(damage);
                     break;
             }
             if (killedAI)
