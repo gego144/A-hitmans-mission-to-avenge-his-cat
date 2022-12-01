@@ -92,19 +92,14 @@ public class ArmBossAI : MonoBehaviour
         {
             if (MovingToPlayer && timer < 0)
             {
-
+                
                 transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, 6f * Time.deltaTime);
-
-                if (Vector2.Distance(transform.position, Player.transform.position) < 1.25f)
+                if (Vector2.Distance(transform.position, Player.transform.position) < 1.8f)
                 {
                     punching = true;
-                    bossCollider.size = new Vector2(bossCollider.size.x + 0.5f, bossCollider.size.y);
-
-
+                    bossCollider.size = new Vector2(bossCollider.size.x + 0.1f, bossCollider.size.y);
                     timer = 0.9f;
                     StartCoroutine(QueueAnimation(animations[2], animations[0], "swing"));
-
-
                 }
             }
             attackTurnTimer[0] -= Time.deltaTime;
@@ -132,7 +127,6 @@ public class ArmBossAI : MonoBehaviour
                 if (Vector2.Distance(new Vector2(transform.position.x, 0), new Vector2(lastPlayerLocation.x, 0)) < 1f)
                 {
                     animationPlayer.runtimeAnimatorController = animations[3];
-                    Debug.Log(Vector2.Distance(transform.position, new Vector2(Player.transform.position.x, Player.transform.position.y)));
                     lastJumpTime = 1f;
                     jumpToPlayer = false;
                 }
@@ -213,7 +207,6 @@ public class ArmBossAI : MonoBehaviour
 
         if (anim == "hurt")
         {
-            //if(animationPlayer.runtimeAnimatorController.)
             secondClip = animationPlayer.runtimeAnimatorController;
             animationPlayer.runtimeAnimatorController = firstClip;
             yield return new WaitForSeconds(0.167f);
@@ -231,9 +224,9 @@ public class ArmBossAI : MonoBehaviour
         }
         else
         {
+            bossCollider.size = new Vector2(bossCollider.size.x - 0.1f, bossCollider.size.y);
             animationPlayer.runtimeAnimatorController = firstClip;
             yield return new WaitForSeconds(0.5f);
-            bossCollider.size = new Vector2(bossCollider.size.x - 0.5f, bossCollider.size.y);
             animationPlayer.runtimeAnimatorController = secondClip;
             punching = false;
             yield return new WaitForSeconds(0.5f);
