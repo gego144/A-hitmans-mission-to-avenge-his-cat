@@ -3,7 +3,6 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-
   tags:
   - RoamerEnemyAI
   - RocketShooterAI
@@ -14,16 +13,15 @@ TagManager:
   - Terrain
   - FlyBoss
   - Enemies
-
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
+  - Enemies
+  - background
   - 
   - 
   - 
@@ -49,11 +47,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Parallax
-    uniqueID: 2522402313
+  - name: background1
+    uniqueID: 621742389
     locked: 0
-  - name: Background
-    uniqueID: 3108483491
+  - name: background2
+    uniqueID: 4277042321
     locked: 0
   - name: Default
     uniqueID: 0
