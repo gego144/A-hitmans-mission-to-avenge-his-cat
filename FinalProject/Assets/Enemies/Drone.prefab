@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2047926630333492640}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.2, y: -2.5194564, z: -0.15}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2.8, y: 2.8, z: 2.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7147662781100289090}
@@ -105,7 +105,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.48, y: 0.48}
+    oldSize: {x: 0.4, y: 0.28}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -132,6 +132,7 @@ MonoBehaviour:
   bloodSplat: {fileID: 7147662781100289101}
   moveSpeed: 8
   moveRate: 3
+  fireRate: 2
 --- !u!95 &1850853514
 Animator:
   serializedVersion: 4
