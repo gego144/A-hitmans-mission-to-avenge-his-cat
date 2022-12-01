@@ -3,23 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - RoamerEnemyAI
-  - RocketShooterAI
-  - DroneEnemyAI
-  - Hazard
-  - TileMap
-  - ArmBoss
-  - Terrain
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - 
   - Water
   - UI
-  - Enemies
-  - background
+  - 
+  - 
   - 
   - 
   - 
@@ -45,25 +38,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: background1
-    uniqueID: 621742389
+  - name: Parallax
+    uniqueID: 2522402313
     locked: 0
-<<<<<<< HEAD
-  - name: tree base
-    uniqueID: 1174749505
-    locked: 0
-  - name: Black
-    uniqueID: 803030909
-    locked: 0
-  - name: tree top
-    uniqueID: 2846921535
-=======
-  - name: background2
-    uniqueID: 4277042321
->>>>>>> origin/main
-    locked: 0
-  - name: background
-    uniqueID: 3441507817
+  - name: Background
+    uniqueID: 3108483491
     locked: 0
   - name: Default
     uniqueID: 0
