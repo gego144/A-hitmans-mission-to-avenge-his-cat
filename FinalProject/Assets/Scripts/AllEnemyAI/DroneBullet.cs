@@ -9,6 +9,7 @@ public class DroneBullet : MonoBehaviour
     private PlayerHealth health;
     [SerializeField]
     private ParticleSystem explosion;
+    [SerializeField] private float projectileSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,7 @@ public class DroneBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, PlayerLocation, 2f * Time.deltaTime);
+        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, PlayerLocation, projectileSpeed * Time.deltaTime);
         if(Vector3.Distance(gameObject.transform.position, PlayerLocation) < 0.5f)
         {
             explosion.Play();
