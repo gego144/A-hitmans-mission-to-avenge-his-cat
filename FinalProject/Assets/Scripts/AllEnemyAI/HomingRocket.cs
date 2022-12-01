@@ -37,7 +37,6 @@ public class HomingRocket : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.tag == "Player" && !exploding) {
             health.TakeDamage(25f);
             StartCoroutine(Explode());
