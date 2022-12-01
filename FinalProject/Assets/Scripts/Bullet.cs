@@ -15,6 +15,7 @@ public class Bullet : MonoBehaviour
     private Vector3 leftSide;
     private float damage;
     [SerializeField] private float healthRestore;
+    [SerializeField] private AudioSource hitSE;
 
     void Start()
     {
@@ -74,6 +75,7 @@ public class Bullet : MonoBehaviour
             }
             if (killedAI)
             {
+                
                 Destroy(collision.gameObject);
                 if(playerHealth + healthRestore > 100) {
                     healthScript.health = 100;
@@ -83,6 +85,8 @@ public class Bullet : MonoBehaviour
                 }
 
             }
+            hitSE.Play();
+
         }
         else if (collision.tag == "Player")
         {

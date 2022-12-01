@@ -25,6 +25,7 @@ public class RoamerEnemyAI : MonoBehaviour
     [SerializeField] private float detectionDistance;
     [SerializeField] private float safeDistance;
     private float endTimer = 0.25f;
+    [SerializeField] private AudioSource batSwingSE;
 
     void Start()
     {
@@ -62,6 +63,7 @@ public class RoamerEnemyAI : MonoBehaviour
             if(Vector3.Distance(gameObject.transform.position, Player.transform.position) < 0.25*detectionDistance && attackTimer <= 0)
             {
                 attackTimer = 1f;
+                batSwingSE.Play();
                 StartCoroutine(QueueAnimation(clips[1], clips[0]));
                 health.TakeDamage(20f);
                 movingToPlayer = false;
