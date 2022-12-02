@@ -8,6 +8,7 @@ public class FlyBossRocket : MonoBehaviour
     private float aliveTimer;
     private PlayerHealth health;
     private float rocketSpeed;
+    [SerializeField] private AudioSource missleSE;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,21 +26,30 @@ public class FlyBossRocket : MonoBehaviour
         aliveTimer -= Time.deltaTime;
         if (aliveTimer < 0)
         {
-            Destroy(gameObject);
+            StartCoroutine(Explode());
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.name);
+        
         if (collision.gameObject.tag == "Player")
         {
             health.TakeDamage(25f);
-            Destroy(gameObject);
+            StartCoroutine(Explode());
         }
         else if (collision.gameObject.tag == "Terrain")
         {
-            Destroy(gameObject);
+            StartCoroutine(Explode());
         }
+    }
+
+
+    IEnumerator Explode() {
+        missleSE.Play();
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
     }
 }
 

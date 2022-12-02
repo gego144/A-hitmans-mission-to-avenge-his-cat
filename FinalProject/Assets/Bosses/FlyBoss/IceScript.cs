@@ -11,6 +11,7 @@ public class IceScript : MonoBehaviour
     Vector3 direction;
     private bool canTouchPlayer;
     [SerializeField] private float distance;
+    [SerializeField] private AudioSource iceSE;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class IceScript : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, rot);
 
         canTouchPlayer = true;
+        iceSE.Play();
     }
 
     // Update is called once per frame
