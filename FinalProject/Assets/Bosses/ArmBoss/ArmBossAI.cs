@@ -33,9 +33,7 @@ public class ArmBossAI : MonoBehaviour
 
 
     [SerializeField] private GameObject spikes;
-    private bool spikeAttack;
     private float spikeTimer;
-    private float inBetweenSpikesTimer;
 
     private float[] attackTurnTimer;
 
@@ -63,7 +61,6 @@ public class ArmBossAI : MonoBehaviour
         jumpToPlayer = false;
         lastJumpTime = 0;
 
-        spikeAttack = true;
         spikeTimer = 2f;
         attackTurnTimer = new float[3];
 
@@ -147,10 +144,8 @@ public class ArmBossAI : MonoBehaviour
         {
             if (spikeTimer < 0)
             {
-                inBetweenSpikesTimer = 0.5f;
                 spikeTimer = 1f;
                 Instantiate(spikes, new Vector3(Player.transform.position.x, -1.844f, Player.transform.position.z), gameObject.transform.rotation);
-                spikeAttack = false;
                 StartCoroutine(QueueAnimation(animations[4], animations[0], "spikes"));
 
             }
@@ -174,12 +169,9 @@ public class ArmBossAI : MonoBehaviour
             }
         }
         
-        
-        
         timer -= Time.deltaTime;
         lastJumpTime -= Time.deltaTime;
         spikeTimer -= Time.deltaTime;
-        inBetweenSpikesTimer -= Time.deltaTime;
     }
 
     public bool AiHealthDamage(float damage)

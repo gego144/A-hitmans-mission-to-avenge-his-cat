@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 6314146951534721447}
   - component: {fileID: 6314146951534721444}
   - component: {fileID: 3372966815474393564}
-  m_Layer: 0
+  - component: {fileID: 2114087852}
+  - component: {fileID: 2114087853}
+  m_Layer: 6
   m_Name: RollBoss
-  m_TagString: Untagged
+  m_TagString: RollBoss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 1079514291269069761}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d715a4ffc64172d448f4017b0a9fdaaa, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5cc9d9aaa6def204bb10da90ae28c1b1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -118,7 +120,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e514f42744f02604db2020a6ff4ea7e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AiHealth: 1000
   animations:
   - {fileID: 9100000, guid: d715a4ffc64172d448f4017b0a9fdaaa, type: 2}
   - {fileID: 9100000, guid: 5cc9d9aaa6def204bb10da90ae28c1b1, type: 2}
+  - {fileID: 9100000, guid: c3c61cd58f7476240b7640f68c5cc8be, type: 2}
+  - {fileID: 9100000, guid: fff78ebdafbbfa34a9e5ca8eac857a0c, type: 2}
+  - {fileID: 9100000, guid: b91a3f39eb4b7de4ab384243c2fe76ca, type: 2}
   bomb: {fileID: 109406444124838034, guid: 9f437293a7c114147b772f12ffdba2fb, type: 3}
+  Destination: {x: 0.06, y: -3.23}
+--- !u!50 &2114087852
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079514291269069761}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 50
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &2114087853
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079514291269069761}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.53, y: 0.64}
+    newSize: {x: 0.53, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.53, y: 0.64}
+  m_EdgeRadius: 0

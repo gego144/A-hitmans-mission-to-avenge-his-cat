@@ -49,6 +49,10 @@ public class BombScript : MonoBehaviour
         rb2d.bodyType = RigidbodyType2D.Kinematic;
         theCollider.size = new Vector2(theCollider.size.x, theCollider.size.y - 0.3f);
         gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 0.9f);
+        if(Vector2.Distance(gameObject.transform.position, Player.transform.position) <= 2.5f)
+        {
+            Player.GetComponent<PlayerHealth>().TakeDamage(40f);
+        }
         yield return new WaitForSeconds(0.667f);
         Destroy(gameObject);
     }
