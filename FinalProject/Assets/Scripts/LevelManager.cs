@@ -9,11 +9,17 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject gadgetMenu;
     [SerializeField] private GameObject weaponMenu;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject bossTrigger;
+    [SerializeField] private GameObject boss;
+    private Vector3 bossRespawnPoint;
+    private bool respawning;
     private float playerHealth;
 
     // Start is called before the first frame update
     void Start()
     {
+        respawning = false;
+        bossRespawnPoint = bossTrigger.transform.position;
         Time.timeScale = 0;
         isPaused = true;
         StartCoroutine(gameStart());
@@ -23,9 +29,14 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         playerHealth = player.GetComponent<PlayerHealth>().health;
-        if (playerHealth <= 0) {
+        if (playerHealth <= 0 && bossTrigger.activeSelf) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        else if(playerHealth <= 0 && !respawning) {
+            respawning = true;
+            StartCoroutine(Respawn());
         }
     }
 
@@ -38,4 +49,17 @@ public class LevelManager : MonoBehaviour
         isPaused = false;
         yield return null;
     }
+
+    IEnumerator Respawn() {
+        Time.timeScale = 0;
+        player.transform.position = new Vector3(bossRespawnPoint.x, bossRespawnPoint.y-3, bossRespawnPoint.z);
+        player.GetComponent<PlayerHealth>().health = 100f;
+        boss.GetComponent<FlyBossAI>().AiHealth = boss.GetComponent<FlyBossAI>().maxHealth;
+
+        new WaitForSeconds(3);
+        Time.timeScale = 1;
+        respawning = false;
+        yield return null;
+    }
+
 }
