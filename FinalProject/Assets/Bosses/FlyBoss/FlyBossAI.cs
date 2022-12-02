@@ -28,10 +28,12 @@ public class FlyBossAI : MonoBehaviour
     private bool rocketBarrageOn;
 
     private float[] attackTurnTimer;
-    [SerializeField] private float AiHealth;
+    public float maxHealth;
+    [SerializeField] public float AiHealth;
     // Start is called before the first frame update
     void Start()
     {
+        maxHealth = AiHealth;
         shotsTaken = 0;
         isFacingRight = true;
         animationPlayer = gameObject.GetComponent<Animator>();
