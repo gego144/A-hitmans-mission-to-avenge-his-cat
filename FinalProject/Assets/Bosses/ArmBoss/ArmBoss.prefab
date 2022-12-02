@@ -45,9 +45,9 @@ GameObject:
   - component: {fileID: 946482492}
   - component: {fileID: 946482493}
   - component: {fileID: 946482494}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ArmBoss
-  m_TagString: Untagged
+  m_TagString: ArmBoss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1837834468, guid: f3e92b4e23b25f14582108eb791816af, type: 3}
+  m_Sprite: {fileID: 909358496, guid: 95055f0c28bd6b943951c2babe64d9d1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -130,7 +130,7 @@ Animator:
   m_GameObject: {fileID: 2257921840428952221}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 988eae57c0118e44a875b708350bd2d4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 166f7afdc9d411443b8650deff2e97c6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -159,6 +159,7 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 46578ec09aacbb14e98068dac7deeecf, type: 2}
   - {fileID: 9100000, guid: 11b963ccd6406e64e8877d719fd148e5, type: 2}
   - {fileID: 9100000, guid: 59513dc0a0807b544bf035c7b06abd68, type: 2}
+  - {fileID: 9100000, guid: 8a7fa0e1e7c97774f9e83f6bd6ff5751, type: 2}
   isFacingRight: 0
   whatIsGround:
     serializedVersion: 2
@@ -166,6 +167,7 @@ MonoBehaviour:
   groundCheck: {fileID: 840612783}
   jumpSpeed: 8
   spikes: {fileID: 8925284029587385363, guid: 6c7a823de5ed91c4e8121e9f244a8d1f, type: 3}
+  AiHealth: 500
 --- !u!50 &946482493
 Rigidbody2D:
   serializedVersion: 4
@@ -186,7 +188,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &946482494
 BoxCollider2D:
   m_ObjectHideFlags: 0
