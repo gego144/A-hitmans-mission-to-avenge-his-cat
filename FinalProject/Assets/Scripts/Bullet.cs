@@ -54,6 +54,7 @@ public class Bullet : MonoBehaviour
         }
         else if (collision.gameObject.layer == 6)
         {
+            hitSE.Play();
             bool killedAI = false;
             Destroy(gameObject);
             switch (collision.gameObject.tag)
@@ -89,7 +90,7 @@ public class Bullet : MonoBehaviour
                 }
 
             }
-            hitSE.Play();
+            
 
         }
         else if (collision.tag == "Player")

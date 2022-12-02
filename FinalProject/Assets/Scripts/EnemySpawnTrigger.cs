@@ -6,8 +6,11 @@ public class EnemySpawnTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject enemy;
     [SerializeField] private Vector3 spawnPosition;
+    private GameObject allEnemies;
 
-
+    private void Start() {
+        allEnemies = GameObject.FindGameObjectWithTag("Enemies");
+    }
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
             spawnEnemy(enemy, spawnPosition);
@@ -16,7 +19,9 @@ public class EnemySpawnTrigger : MonoBehaviour
     }
 
     public void spawnEnemy(GameObject e, Vector3 p) {
-        Instantiate(e, p, e.transform.rotation);
+        GameObject child = Instantiate(e, p, e.transform.rotation);
+        child.transform.parent = allEnemies.transform;
+
     }
 
     private void OnDrawGizmosSelected() {
