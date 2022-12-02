@@ -60,7 +60,7 @@ public class RollBossAI : MonoBehaviour
         // bomb shooting code
         if (bombCoolDownTimer <= 0 && bombsShot <= 2 && isShooting)
         {
-            bombCoolDownTimer = 1.7f;
+            bombCoolDownTimer = 1f;
             StartCoroutine(QueueAnimation(animations[0], animations[1], "bomb"));
             bombsShot += 1;
             if(bombsShot == 3)
