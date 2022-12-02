@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject bossTrigger;
     [SerializeField] private GameObject boss;
+    [SerializeField] private GameObject DeadScreen;
     private Vector3 bossRespawnPoint;
     private bool respawning;
     private float playerHealth;
@@ -32,7 +33,10 @@ public class LevelManager : MonoBehaviour
 
         playerHealth = player.GetComponent<PlayerHealth>().health;
         if (playerHealth <= 0 && bossTrigger.activeSelf) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            DeadScreen.SetActive(true);
+            player.GetComponent<SpriteRenderer>().forceRenderingOff = true;
+            Time.timeScale = 0;
+            
         }
         else if(playerHealth <= 0 && !respawning) {
             respawning = true;

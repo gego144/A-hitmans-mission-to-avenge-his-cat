@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] GameObject StartMenu;
-    [SerializeField] GameObject HowToPlayMenu;
+    [SerializeField] private GameObject StartMenu;
+    [SerializeField] private GameObject HowToPlayMenu;
+    [SerializeField] private GameObject PlayerDeadMenu;
 
     public void StartButtonClicked()
     {
@@ -22,5 +23,10 @@ public class UIManager : MonoBehaviour
     public void QuitButtonClicked()
     {
         Application.Quit();
+    }
+
+    public void RestartButtonClicked()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
