@@ -12,6 +12,7 @@ TagManager:
   - ArmBoss
   - Terrain
   - FlyBoss
+  - RollBoss
   - Enemies
   layers:
   - Default

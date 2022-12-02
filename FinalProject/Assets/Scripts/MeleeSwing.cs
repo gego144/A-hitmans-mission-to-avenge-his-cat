@@ -50,6 +50,9 @@ public class MeleeSwing : MonoBehaviour
                             case "FlyBoss":
                                 killedAI = enemy.gameObject.GetComponent<FlyBossAI>().AiHealthDamage(50f);
                                 break;
+                            case "RollBoss":
+                                killedAI = enemy.gameObject.GetComponent<RollBossAI>().AiHealthDamage(50f);
+                                break;
                         }
                         if (killedAI)
                         {

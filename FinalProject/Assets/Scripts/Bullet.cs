@@ -55,6 +55,7 @@ public class Bullet : MonoBehaviour
         else if (collision.gameObject.layer == 6)
         {
             bool killedAI = false;
+            Destroy(gameObject);
             switch (collision.gameObject.tag)
             {
                 case "RoamerEnemyAI":
@@ -71,6 +72,9 @@ public class Bullet : MonoBehaviour
                     break;
                 case "FlyBoss":
                     killedAI = collision.gameObject.GetComponent<FlyBossAI>().AiHealthDamage(damage);
+                    break;
+                case "RollBoss":
+                    killedAI = collision.gameObject.GetComponent<RollBossAI>().AiHealthDamage(50f);
                     break;
             }
             if (killedAI)
