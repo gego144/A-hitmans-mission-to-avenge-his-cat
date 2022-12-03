@@ -77,7 +77,7 @@ public class RollBossAI : MonoBehaviour
         {
             if (movingToDestination)
             {
-                gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, Destination, 16f * Time.deltaTime);
+                gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, Destination, 18f * Time.deltaTime);
                 if (Vector2.Distance(gameObject.transform.position, Destination) < 0.2f)
                 {
                     movingToDestination = false;
@@ -86,7 +86,7 @@ public class RollBossAI : MonoBehaviour
             }
             else
             {
-                gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, startLocation, 16f * Time.deltaTime);
+                gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, startLocation, 18f * Time.deltaTime);
                 if (Vector3.Distance(gameObject.transform.position, startLocation) < 0.2f)
                 {
                     fullLaps += 1;
