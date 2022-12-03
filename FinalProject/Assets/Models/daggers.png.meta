@@ -1,0 +1,263 @@
+fileFormatVersion: 2
+guid: 68263a757b26ce74084510acb90ffb4a
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: daggers_48
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 52
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ba5a31f5233d3b4e8ff38cdfa41f656
+      internalID: -926067704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: daggers_49
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 52
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8bdfa31eb26855438101d3d4dbd50a2
+      internalID: -1748133829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: daggers_50
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 52
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a22409dc1a941840b96dede71c301cc
+      internalID: -1143635045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: daggers_51
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 56
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6020f7e6a71248749b93d6a6345f013d
+      internalID: -1934616902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      daggers_7: -1566567247
+      daggers_14: 1946567415
+      daggers_5: 1387004493
+      daggers_39: 284941766
+      daggers_54: 1588273345
+      daggers_36: 1529118095
+      daggers_20: -1733274199
+      daggers_26: -722127627
+      daggers_4: 25684233
+      daggers_19: -1174642642
+      daggers_10: 1743143350
+      daggers_48: -926067704
+      daggers_37: -702718363
+      daggers_6: -1222061273
+      daggers_21: 441016037
+      daggers_2: 1225216430
+      daggers_16: 619548626
+      daggers_33: -2082094970
+      daggers_35: -1627969302
+      daggers_47: 451385833
+      daggers_40: -1123792855
+      daggers_52: 1420416839
+      daggers_17: -379769010
+      daggers_9: 1941356702
+      daggers_12: 2023838681
+      daggers_42: -1080927862
+      daggers_1: 1574758058
+      daggers_43: -711108910
+      daggers_44: 1426122570
+      daggers_30: 2134537392
+      daggers_3: 1970207143
+      daggers_50: -1143635045
+      daggers_24: 1383904688
+      daggers_23: 886586777
+      daggers_45: -1824713629
+      daggers_0: -1108130026
+      daggers_31: -1880381546
+      daggers_53: -745341494
+      daggers_27: 672893409
+      daggers_49: -1748133829
+      daggers_29: 763939085
+      daggers_13: 1370042412
+      daggers_11: -1614907068
+      daggers_22: -273142575
+      daggers_18: 1723755085
+      daggers_34: 2118288660
+      daggers_32: -118007911
+      daggers_51: -1934616902
+      daggers_55: -168276960
+      daggers_41: 952849219
+      daggers_8: 379596102
+      daggers_46: -1071549795
+      daggers_38: -1165344617
+      daggers_25: 1297271922
+      daggers_28: 1142352455
+      daggers_15: 390577910
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
