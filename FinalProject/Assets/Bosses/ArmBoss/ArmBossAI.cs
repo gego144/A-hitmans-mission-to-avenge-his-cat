@@ -126,13 +126,15 @@ public class ArmBossAI : MonoBehaviour
                 lastJumpTime = 5f;
                 if (Vector2.Distance(new Vector2(transform.position.x, 0), new Vector2(lastPlayerLocation.x, 0)) < 2.5f)
                 {
+                    Debug.Log(Vector2.Distance(new Vector2(transform.position.x, 0), new Vector2(lastPlayerLocation.x, 0)));
                     animationPlayer.runtimeAnimatorController = animations[3];
                     lastJumpTime = 1f;
                     jumpToPlayer = false;
                 }
             }
-            if (rb2d.velocity.x < 0.5f && !jumpToPlayer)
+            if (rb2d.velocity.x < 0.5f && !jumpToPlayer && !isGrounded())
             {
+                Debug.Log("Force");
                 rb2d.AddForce(Vector2.down * 15f * rb2d.mass);
             }
             if (isGrounded() && Vector2.Distance(transform.position, Player.transform.position) < 4f)
@@ -171,7 +173,8 @@ public class ArmBossAI : MonoBehaviour
                 attackTurnTimer[i] = Random.Range(5f, 10f);
             }
         }
-        Debug.Log(Vector2.Distance(new Vector2(transform.position.x, 0), new Vector2(lastPlayerLocation.x, 0)));
+        Debug.Log(isGrounded());
+        //
         
         timer -= Time.deltaTime;
         lastJumpTime -= Time.deltaTime;
