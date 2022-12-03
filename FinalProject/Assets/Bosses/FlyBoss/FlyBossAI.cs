@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FlyBossAI : MonoBehaviour
 {
@@ -63,7 +64,7 @@ public class FlyBossAI : MonoBehaviour
             Flip();
         }
         else if (Player.transform.position.x < gameObject.transform.position.x && isFacingRight)
-        { 
+        {
             Flip();
         }
 
@@ -105,7 +106,7 @@ public class FlyBossAI : MonoBehaviour
             }
             attackTurnTimer[0] -= Time.deltaTime;
         }
-        else if(attackTurnTimer[1] > 0)
+        else if (attackTurnTimer[1] > 0)
         {
             if (shootTimer < 0)
             {
@@ -161,6 +162,10 @@ public class FlyBossAI : MonoBehaviour
         Debug.Log("called");
         StartCoroutine(QueueAnimation(animations[4], animations[0], "hurt"));
         AiHealth -= damage;
+        if (AiHealth <= 0)
+        {
+            SceneManager.LoadScene("chineseCityLevel");
+        }
         return AiHealth <= 0;
     }
 
@@ -180,12 +185,12 @@ public class FlyBossAI : MonoBehaviour
             shooting = true;
             animationPlayer.runtimeAnimatorController = firstClip;
             yield return new WaitForSeconds(0.5f);
-            if(shotsTaken > 5)
+            if (shotsTaken > 5)
             {
                 shooting = false;
                 animationPlayer.runtimeAnimatorController = secondClip;
             }
-            
+
         }
         else if (anim == "rocket")
         {
@@ -196,7 +201,7 @@ public class FlyBossAI : MonoBehaviour
             animationPlayer.runtimeAnimatorController = secondClip;
         }
 
-        else if(anim == "hurt")
+        else if (anim == "hurt")
         {
             Debug.Log("HIT");
             secondClip = animationPlayer.runtimeAnimatorController;
@@ -205,7 +210,4 @@ public class FlyBossAI : MonoBehaviour
             animationPlayer.runtimeAnimatorController = secondClip;
         }
     }
-
-
-
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RollBossAI : MonoBehaviour
 {
@@ -134,6 +135,11 @@ public class RollBossAI : MonoBehaviour
     {
         StartCoroutine(QueueAnimation(animations[4], animations[0], "hurt"));
         AiHealth -= damage;
+        if (AiHealth <= 0)
+        {
+            Debug.Log("here");
+            SceneManager.LoadScene("StartScene");
+        }
         return AiHealth <= 0;
     }
 

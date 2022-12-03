@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ArmBossAI : MonoBehaviour
 {
@@ -185,6 +186,10 @@ public class ArmBossAI : MonoBehaviour
     {
         StartCoroutine(QueueAnimation(animations[5], animations[0], "hurt"));
         AiHealth -= damage;
+        if (AiHealth <= 0)
+        {
+            SceneManager.LoadScene("parkLevel");
+        }
         return AiHealth <= 0;
     }
 
@@ -244,5 +249,4 @@ public class ArmBossAI : MonoBehaviour
             }
         }
     }
-
 }
