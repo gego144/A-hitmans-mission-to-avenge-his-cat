@@ -12,6 +12,7 @@ public class BombScript : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     private bool setTimer;
     private BoxCollider2D theCollider;
+    private float startTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class BombScript : MonoBehaviour
         animationPlayer = gameObject.GetComponent<Animator>();
         Player = GameObject.FindGameObjectWithTag("Player");
         setTimer = false;
+        startTimer = 5f;
     }
 
     // Update is called once per frame
@@ -30,17 +32,18 @@ public class BombScript : MonoBehaviour
         {
             rb2d.AddForce(Vector2.down * 1.5f * rb2d.mass);
         }
-        else if(isGrounded() && !setTimer)
+        else if(isGrounded() && !setTimer || startTimer < 0)
         {
             setTimer = true;
             
             StartCoroutine(QueueAnimation(animations[0], animations[1])); 
-        } 
+        }
+        startTimer -= Time.deltaTime;
     }
 
     IEnumerator QueueAnimation(RuntimeAnimatorController firstClip, RuntimeAnimatorController secondClip)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         animationPlayer.runtimeAnimatorController = firstClip;
         yield return new WaitForSeconds(0.5f);
         animationPlayer.runtimeAnimatorController = secondClip;
