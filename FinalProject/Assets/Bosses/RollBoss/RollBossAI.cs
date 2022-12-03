@@ -37,7 +37,7 @@ public class RollBossAI : MonoBehaviour
         isShooting = true;
 
         startLocation = gameObject.transform.position;
-        isFacingRight = true;
+        isFacingRight = false;
         movingToDestination = true;
         isRun = false;
         fullLaps = 0;
@@ -145,7 +145,7 @@ public class RollBossAI : MonoBehaviour
             animationPlayer.runtimeAnimatorController = firstClip;
             yield return new WaitForSeconds(0.4f);
             // NEED TO CHANGE Y VALUE TO THE TOP OF BOSS ROOM WHAT EVER IT LOOKS LIKE
-            bombs.Add(Instantiate(bomb, new Vector2(Player.transform.position.x, Player.transform.position.y + 5f), Quaternion.identity));
+            bombs.Add(Instantiate(bomb, new Vector2(Player.transform.position.x, 99f), Quaternion.identity));
             animationPlayer.runtimeAnimatorController = secondClip;
         }
         else if(anim == "run")
