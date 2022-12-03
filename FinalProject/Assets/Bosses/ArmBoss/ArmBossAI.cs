@@ -112,7 +112,7 @@ public class ArmBossAI : MonoBehaviour
                 if (isGrounded())
                 {
                     jumpToPlayer = true;
-                    rb2d.AddForce(Vector2.up * 150f, ForceMode2D.Impulse);
+                    rb2d.AddForce(Vector2.up * 200f, ForceMode2D.Impulse);
                 }
 
                 lastPlayerLocation = Player.transform.position;
@@ -126,7 +126,7 @@ public class ArmBossAI : MonoBehaviour
                 lastJumpTime = 5f;
                 if (Vector2.Distance(new Vector2(transform.position.x, 0), new Vector2(lastPlayerLocation.x, 0)) < 2.5f)
                 {
-                    Debug.Log(Vector2.Distance(new Vector2(transform.position.x, 0), new Vector2(lastPlayerLocation.x, 0)));
+                    Debug.Log("distance");
                     animationPlayer.runtimeAnimatorController = animations[3];
                     lastJumpTime = 1f;
                     jumpToPlayer = false;
@@ -150,7 +150,7 @@ public class ArmBossAI : MonoBehaviour
             if (spikeTimer < 0)
             {
                 spikeTimer = 1f;
-                Instantiate(spikes, new Vector3(Player.transform.position.x, -1.844f, Player.transform.position.z), gameObject.transform.rotation);
+                Instantiate(spikes, new Vector3(Player.transform.position.x, 14.35f, Player.transform.position.z), gameObject.transform.rotation);
                 StartCoroutine(QueueAnimation(animations[4], animations[0], "spikes"));
 
             }
