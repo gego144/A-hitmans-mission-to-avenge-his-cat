@@ -58,8 +58,18 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 0;
         player.transform.position = new Vector3(bossRespawnPoint.x, bossRespawnPoint.y-3, bossRespawnPoint.z);
         player.GetComponent<PlayerHealth>().health = 100f;
-        boss.GetComponent<FlyBossAI>().AiHealth = boss.GetComponent<FlyBossAI>().maxHealth;
-
+        switch (boss.tag) {
+            case "FlyBoss":
+                boss.GetComponent<FlyBossAI>().AiHealth = boss.GetComponent<FlyBossAI>().maxHealth;
+                break;
+            case "ArmBoss":
+                boss.GetComponent<ArmBossAI>().AiHealth = boss.GetComponent<ArmBossAI>().maxHealth;
+                break;
+            case "RollBoss":
+                boss.GetComponent<RollBossAI>().AiHealth = boss.GetComponent<RollBossAI>().maxHealth;
+                break;
+        }
+        
         new WaitForSeconds(3);
         Time.timeScale = 1;
         respawning = false;

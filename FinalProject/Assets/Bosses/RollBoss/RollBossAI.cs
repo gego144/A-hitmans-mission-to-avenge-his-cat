@@ -6,7 +6,8 @@ public class RollBossAI : MonoBehaviour
 {
     private GameObject Player;
     private PlayerHealth playersHealth;
-    [SerializeField] private float AiHealth;
+    public float AiHealth;
+    public float maxHealth;
     private Animator animationPlayer;
     [SerializeField] private RuntimeAnimatorController[] animations;
 
@@ -25,6 +26,7 @@ public class RollBossAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        maxHealth = AiHealth;
         Player = GameObject.FindGameObjectWithTag("Player");
         playersHealth = Player.GetComponent<PlayerHealth>();
         animationPlayer = gameObject.GetComponent<Animator>();
