@@ -59,7 +59,7 @@ public class MeleeSwing : MonoBehaviour
                                 killedAI = enemy.gameObject.GetComponent<RollBossAI>().AiHealthDamage(50f);
                                 break;
                         }
-                        if(healthScript.health + 3 > 100)
+                        if(healthScript.health + 3 >= 100)
                         {
                             healthScript.health = 100;
                         }
