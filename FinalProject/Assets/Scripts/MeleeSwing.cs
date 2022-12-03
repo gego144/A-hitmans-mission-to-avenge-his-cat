@@ -12,11 +12,15 @@ public class MeleeSwing : MonoBehaviour
     private PlayerHealth healthScript;
     [SerializeField] private float healthRestore;
     private float playerHealth;
+    [SerializeField] private float animationTime;
+    [SerializeField] private RuntimeAnimatorController animation;
+    private Animator theAnimator;
     // Start is called before the first frame update
 
     private void Start() {
         healthScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         healthRestore = 20f;
+        theAnimator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -27,6 +31,7 @@ public class MeleeSwing : MonoBehaviour
         if (Time.time >= nextAttackTime) { 
             if (Input.GetButtonDown("Fire1"))
             {
+                StartCoroutine(PlayAnimation(animationTime, animation));
                 Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(gameObject.transform.position, swingRange, enemyLayers);
                 foreach(Collider2D enemy in enemiesHit)
                 {
@@ -54,6 +59,15 @@ public class MeleeSwing : MonoBehaviour
                                 killedAI = enemy.gameObject.GetComponent<RollBossAI>().AiHealthDamage(50f);
                                 break;
                         }
+                        if(healthScript.health + 3 > 100)
+                        {
+                            healthScript.health = 100;
+                        }
+                        else
+                        {
+                            healthScript.health += 3f;
+                        }
+
                         if (killedAI)
                         {
                             Destroy(enemy.gameObject);
@@ -75,4 +89,12 @@ public class MeleeSwing : MonoBehaviour
     {
         Gizmos.DrawWireSphere(gameObject.transform.position, swingRange);
     }
+
+    IEnumerator PlayAnimation(float animationTime, RuntimeAnimatorController animation)
+    {
+            theAnimator.runtimeAnimatorController = animation;
+            yield return new WaitForSeconds(animationTime);
+            theAnimator.runtimeAnimatorController = null;
+    }
+
 }
