@@ -14,6 +14,7 @@ public class Shuriken : MonoBehaviour
     private PlayerHealth healthScript;
     [SerializeField] private float healthRestore;
     private float playerHealth;
+    private float aliveTimer;
 
     void Start()
     {
@@ -30,7 +31,9 @@ public class Shuriken : MonoBehaviour
         {
             rb.velocity = leftSide * speed;
         }
-        
+        aliveTimer = 1f;
+
+
     }
     void Update()
     {
@@ -39,8 +42,9 @@ public class Shuriken : MonoBehaviour
         if (timer < 0f)
         {
             rb.velocity = new Vector2(0f, 0f);
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, GameObject.FindGameObjectWithTag("Player").transform.position, 8f * Time.deltaTime);
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, GameObject.FindGameObjectWithTag("Player").transform.position, 16f * Time.deltaTime);
         }
+        aliveTimer -= Time.deltaTime;
     }
 
     // Update is called once per frame
@@ -88,10 +92,9 @@ public class Shuriken : MonoBehaviour
                 }
             }
         }
-        else if (collision.tag == "Player")
+        else if (collision.tag == "Player" && aliveTimer < 0)
         {
-
+            Destroy(gameObject);
         }
-        //Destroy(collision.transform.gameObject);
     }
 }

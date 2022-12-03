@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
 
     public void StartButtonClicked()
     {
-        SceneManager.LoadScene("parkLevel");
+        SceneManager.LoadScene("cityLevel");
     }
 
     public void HowToPlayButtonClicked()
