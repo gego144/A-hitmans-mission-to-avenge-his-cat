@@ -65,7 +65,7 @@ public class Gadgets : MonoBehaviour
                     lowerAlpha = invisibilityMaterial.color;
                     lowerAlpha.a = 0.5f;
                     invisibilityMaterial.color = lowerAlpha;
-                    StartCoroutine(StartTimer(5f));
+                    StartCoroutine(StartTimer(1.5f));
                     break;
                 case "Rage":
                     currentlyRaged.SetActive(true);
@@ -73,7 +73,7 @@ public class Gadgets : MonoBehaviour
                     Color customColor = new Color(0.4f, 0.9f, 0.7f, 1.0f);
                     playerDisplay.color = customColor;
                     movement.rageModeOn();
-                    StartCoroutine(StartTimer(5f));
+                    StartCoroutine(StartTimer(1.5f));
                     break;
             }
         }
