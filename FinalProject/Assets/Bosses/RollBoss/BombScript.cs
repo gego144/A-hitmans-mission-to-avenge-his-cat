@@ -32,7 +32,7 @@ public class BombScript : MonoBehaviour
         {
             rb2d.AddForce(Vector2.down * 1.5f * rb2d.mass);
         }
-        else if(isGrounded() && !setTimer || startTimer < 0)
+        if((isGrounded() && !setTimer) || startTimer < 0)
         {
             setTimer = true;
             

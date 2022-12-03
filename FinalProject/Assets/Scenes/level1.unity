@@ -612,6 +612,7 @@ MonoBehaviour:
   accel: 6
   decc: 3
   velPower: 0.6
+  jumpSE: {fileID: 0}
   jumpCoyoteTime: 0.5
   jumpBufferTime: 0.5
   lastGroundTime: 0
