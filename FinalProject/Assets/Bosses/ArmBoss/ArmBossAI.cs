@@ -49,7 +49,7 @@ public class ArmBossAI : MonoBehaviour
         bossCollider = gameObject.GetComponent<BoxCollider2D>();
         playerCollider = Player.GetComponent<BoxCollider2D>();
         filter.layerMask = whatIsGround;
-        isFacingRight = true;
+        isFacingRight = false;
 
         playersHealth = Player.GetComponent<PlayerHealth>();
 
