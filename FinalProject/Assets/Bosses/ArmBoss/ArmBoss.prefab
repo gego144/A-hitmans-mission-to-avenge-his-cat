@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 946482492}
   - component: {fileID: 946482493}
   - component: {fileID: 946482494}
+  - component: {fileID: -884839728191400448}
   m_Layer: 6
   m_Name: ArmBoss
   m_TagString: ArmBoss
@@ -168,6 +169,7 @@ MonoBehaviour:
   jumpSpeed: 8
   spikes: {fileID: 8925284029587385363, guid: 6c7a823de5ed91c4e8121e9f244a8d1f, type: 3}
   AiHealth: 500
+  maxHealth: 0
 --- !u!50 &946482493
 Rigidbody2D:
   serializedVersion: 4
@@ -215,3 +217,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2894343, y: 0.3338368}
   m_EdgeRadius: 0
+--- !u!114 &-884839728191400448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2257921840428952221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df83a0da867327478f0b4268f41a671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 1009017947}
   - component: {fileID: 1009017948}
   - component: {fileID: 1009017946}
+  - component: {fileID: 8444136507080566637}
   m_Layer: 6
   m_Name: FlyBoss
   m_TagString: FlyBoss
@@ -238,4 +239,17 @@ MonoBehaviour:
   weaponTip: {fileID: 1133316875}
   Rocket: {fileID: 7310313646206127164, guid: 87b4e2d2bbb356b4a948732818e062ac, type: 3}
   flyingBoardTip: {fileID: 1969267957}
+  maxHealth: 0
   AiHealth: 1000
+--- !u!114 &8444136507080566637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2337545734188608919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df83a0da867327478f0b4268f41a671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

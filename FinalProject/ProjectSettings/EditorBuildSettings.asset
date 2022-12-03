@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScene.unity
     guid: 80f2067ce9872074a8e9125a16ca259f
   - enabled: 1
+    path: Assets/Scenes/cityLevel.unity
+    guid: 024e58ae642de414aae1f0dc1fc9608a
+  - enabled: 1
     path: Assets/Scenes/parkLevel.unity
     guid: 31f6711e086dcf5419120aab100a4898
+  - enabled: 1
+    path: Assets/Scenes/chineseCityLevel.unity
+    guid: 4c2a47608fcf66e4499c13cbb8ccc5aa
   m_configObjects: {}
