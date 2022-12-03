@@ -27,6 +27,7 @@ public class ArmBossAI : MonoBehaviour
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float jumpSpeed;
+
     private BoxCollider2D bossCollider;
     private Collider2D playerCollider;
     private ContactFilter2D filter;
@@ -37,12 +38,13 @@ public class ArmBossAI : MonoBehaviour
 
     private float[] attackTurnTimer;
 
-    [SerializeField] private float AiHealth;
+    public float AiHealth;
+    public float maxHealth;
     // Start is called before the first frame update
 
     void Start()
     {
-        
+        maxHealth = AiHealth;
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         bossCollider = gameObject.GetComponent<BoxCollider2D>();
         playerCollider = Player.GetComponent<BoxCollider2D>();
