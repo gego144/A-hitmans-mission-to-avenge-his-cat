@@ -2138,6 +2138,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 475487580716777917, guid: cc0e43fa6e4cf7d4e97455cf5857393d,
+        type: 3}
+      propertyPath: damage
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 475487580716777917, guid: cc0e43fa6e4cf7d4e97455cf5857393d,
+        type: 3}
+      propertyPath: projectileSE
+      value: 
+      objectReference: {fileID: 1458401202}
     - target: {fileID: 797318749371514721, guid: cc0e43fa6e4cf7d4e97455cf5857393d,
         type: 3}
       propertyPath: m_Name
