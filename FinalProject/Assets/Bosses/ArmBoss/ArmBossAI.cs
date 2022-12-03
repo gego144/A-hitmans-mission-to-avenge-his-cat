@@ -112,7 +112,7 @@ public class ArmBossAI : MonoBehaviour
                 if (isGrounded())
                 {
                     jumpToPlayer = true;
-                    rb2d.AddForce(Vector2.up * 100f, ForceMode2D.Impulse);
+                    rb2d.AddForce(Vector2.up * 150f, ForceMode2D.Impulse);
                 }
 
                 lastPlayerLocation = Player.transform.position;
@@ -121,9 +121,10 @@ public class ArmBossAI : MonoBehaviour
 
             if (jumpToPlayer)
             {
+                Debug.Log("jump");
                 transform.position = Vector2.MoveTowards(transform.position, new Vector2(lastPlayerLocation.x, 0), jumpSpeed * Time.deltaTime);
                 lastJumpTime = 5f;
-                if (Vector2.Distance(new Vector2(transform.position.x, 0), new Vector2(lastPlayerLocation.x, 0)) < 1f)
+                if (Vector2.Distance(new Vector2(transform.position.x, 0), new Vector2(lastPlayerLocation.x, 0)) < 2.5f)
                 {
                     animationPlayer.runtimeAnimatorController = animations[3];
                     lastJumpTime = 1f;
@@ -132,7 +133,7 @@ public class ArmBossAI : MonoBehaviour
             }
             if (rb2d.velocity.x < 0.5f && !jumpToPlayer)
             {
-                rb2d.AddForce(Vector2.down * 10f * rb2d.mass);
+                rb2d.AddForce(Vector2.down * 15f * rb2d.mass);
             }
             if (isGrounded() && Vector2.Distance(transform.position, Player.transform.position) < 4f)
             {
@@ -170,6 +171,7 @@ public class ArmBossAI : MonoBehaviour
                 attackTurnTimer[i] = Random.Range(5f, 10f);
             }
         }
+        Debug.Log(Vector2.Distance(new Vector2(transform.position.x, 0), new Vector2(lastPlayerLocation.x, 0)));
         
         timer -= Time.deltaTime;
         lastJumpTime -= Time.deltaTime;

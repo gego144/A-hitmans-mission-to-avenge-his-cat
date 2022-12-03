@@ -50,6 +50,7 @@ public class Shuriken : MonoBehaviour
 
         if (collision.gameObject.layer == 3)
         {
+            Debug.Log("test");
             Destroy(gameObject);
         }
         else if (collision.gameObject.layer == 6)
@@ -90,11 +91,6 @@ public class Shuriken : MonoBehaviour
         else if (collision.tag == "Player")
         {
 
-        }
-        else
-        {
-            Destroy(gameObject);
-            //Destroy(collision.transform.gameObject);
         }
         //Destroy(collision.transform.gameObject);
     }

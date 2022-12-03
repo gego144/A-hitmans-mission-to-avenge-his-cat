@@ -27,6 +27,7 @@ public class ProjectileSpawner : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            Debug.Log(CanShoot());
             if (CanShoot())
             {
                 GameObject spawnedProjectile = Instantiate(projectile, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.2f, gameObject.transform.position.z), gameObject.transform.rotation);
