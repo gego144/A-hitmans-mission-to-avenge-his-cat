@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,7 +17,6 @@ public class RollBossAI : MonoBehaviour
     private int bombsShot;
     private ArrayList bombs;
     private bool isShooting;
-    [SerializeField] private TextMeshProUGUI healthText;
 
     private Vector2 startLocation;
     [SerializeField] private Vector2 Destination;
@@ -52,7 +49,7 @@ public class RollBossAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthText.text = Convert.ToString(AiHealth);
+
         if (bombsShot == 3 && !isBombsActive() && !isShooting)
         {
             switchStance();
