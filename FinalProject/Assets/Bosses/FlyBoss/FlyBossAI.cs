@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +14,7 @@ public class FlyBossAI : MonoBehaviour
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject IceBlast;
     [SerializeField] private Transform weaponTip;
+    [SerializeField] private TextMeshProUGUI bossHealth;
     private bool isFacingRight;
 
     private float shootTimer;
@@ -52,13 +55,14 @@ public class FlyBossAI : MonoBehaviour
         attackTurnTimer = new float[2];
         for (int i = 0; i <= 1; i++)
         {
-            attackTurnTimer[i] = Random.Range(5f, 10f);
+            attackTurnTimer[i] = UnityEngine.Random.Range(5f, 10f);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        bossHealth.text = Convert.ToString(AiHealth);
         if (Player.transform.position.x > gameObject.transform.position.x && !isFacingRight)
         {
             Flip();
@@ -149,7 +153,7 @@ public class FlyBossAI : MonoBehaviour
         {
             for (int i = 0; i <= 1; i++)
             {
-                attackTurnTimer[i] = Random.Range(5f, 10f);
+                attackTurnTimer[i] = UnityEngine.Random.Range(5f, 10f);
             }
         }
 

@@ -1,10 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ArmBossAI : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI bossHealth;
     [SerializeField]
     private GameObject Player;
     private PlayerHealth playersHealth;
@@ -69,14 +72,14 @@ public class ArmBossAI : MonoBehaviour
 
         for(int i = 0; i <= 2; i++)
         {
-            attackTurnTimer[i] = Random.Range(5f, 10f);
+            attackTurnTimer[i] = UnityEngine.Random.Range(5f, 10f);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        bossHealth.text = Convert.ToString(AiHealth);
 
         if (isGrounded() && Player.transform.position.x > gameObject.transform.position.x && !isFacingRight)
         {
@@ -171,7 +174,7 @@ public class ArmBossAI : MonoBehaviour
             animationPlayer.runtimeAnimatorController = animations[1];
             for (int i = 0; i <= 2; i++)
             {
-                attackTurnTimer[i] = Random.Range(5f, 10f);
+                attackTurnTimer[i] = UnityEngine.Random.Range(5f, 10f);
             }
         }
         Debug.Log(isGrounded());
