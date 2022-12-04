@@ -10,6 +10,7 @@ public class StartBoss : MonoBehaviour
     [SerializeField] public GameObject boss;
     [SerializeField] private CinemachineVirtualCamera mainCam;
     [SerializeField] private CinemachineVirtualCamera bossCam;
+    [SerializeField] public GameObject bossHealth;
     public bool bossFighting;
 
     private void Start() {
@@ -31,5 +32,6 @@ public class StartBoss : MonoBehaviour
         Debug.Log("BOSS STARTED");
         bossFighting = true;
         boss.SetActive(true);
+        bossHealth.SetActive(true);
     }
 }
