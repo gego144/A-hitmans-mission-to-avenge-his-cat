@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +11,7 @@ public class RollBossAI : MonoBehaviour
     public float maxHealth;
     private Animator animationPlayer;
     [SerializeField] private RuntimeAnimatorController[] animations;
-    [SerializeField] private TextMeshProUGUI bossHealth;
+
     [SerializeField] private GameObject bomb;
     private float bombCoolDownTimer;
     private int bombsShot;
@@ -51,7 +49,6 @@ public class RollBossAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bossHealth.text = Convert.ToString(AiHealth);
 
         if (bombsShot == 3 && !isBombsActive() && !isShooting)
         {
@@ -140,7 +137,6 @@ public class RollBossAI : MonoBehaviour
         AiHealth -= damage;
         if (AiHealth <= 0)
         {
-            AiHealth = 0;
             Debug.Log("here");
             SceneManager.LoadScene("StartScene");
         }
