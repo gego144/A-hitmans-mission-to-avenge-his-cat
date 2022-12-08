@@ -2451,6 +2451,16 @@ PrefabInstance:
       propertyPath: dashingPower
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 8596234427921454497, guid: cc0e43fa6e4cf7d4e97455cf5857393d,
+        type: 3}
+      propertyPath: animations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8596234427921454497, guid: cc0e43fa6e4cf7d4e97455cf5857393d,
+        type: 3}
+      propertyPath: animations.Array.data[3]
+      value: 
+      objectReference: {fileID: 9100000, guid: 8bc86f7936135a64db060bba7583b43b, type: 2}
     m_RemovedComponents:
     - {fileID: 577226569, guid: cc0e43fa6e4cf7d4e97455cf5857393d, type: 3}
     - {fileID: 577226579, guid: cc0e43fa6e4cf7d4e97455cf5857393d, type: 3}

@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject bossTrigger;
     [SerializeField] private GameObject boss;
     [SerializeField] private GameObject DeadScreen;
+    private Animator theAnimator;
     private Vector3 bossRespawnPoint;
     private bool respawning;
     private float playerHealth;
@@ -23,6 +24,7 @@ public class LevelManager : MonoBehaviour
         bossRespawnPoint = bossTrigger.transform.position;
         Time.timeScale = 0;
         isPaused = true;
+        theAnimator = player.GetComponent<Animator>();
         StartCoroutine(gameStart());
            
     }
@@ -39,6 +41,7 @@ public class LevelManager : MonoBehaviour
             
         }
         else if(playerHealth <= 0 && !respawning) {
+            theAnimator.Play("Death");
             respawning = true;
             StartCoroutine(Respawn());
         }
